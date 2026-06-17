@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, CheckCircle2, User } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -22,6 +22,14 @@ export default function Contact() {
             </h2>
             
             <div className="space-y-6 mb-10 flex-grow">
+              <div className="flex items-start space-x-4">
+                <User className="text-terracotta mt-1 flex-shrink-0" size={24} />
+                <div>
+                  <h4 className="font-bold text-text-primary mb-1">Contact Person</h4>
+                  <p className="text-text-secondary">Ridhi Maheshwari</p>
+                </div>
+              </div>
+
               <div className="flex items-start space-x-4">
                 <MapPin className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
@@ -46,7 +54,11 @@ export default function Contact() {
                 <Mail className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
                   <h4 className="font-bold text-text-primary mb-1">Email</h4>
-                  <p className="text-text-secondary">enquiry@adhyayanlibrarygwalior.com</p>
+                  <p className="text-text-secondary">
+                    <a href="mailto:ridhimaheshwari2004@gmail.com" className="hover:text-terracotta transition-colors">
+                      ridhimaheshwari2004@gmail.com
+                    </a>
+                  </p>
                 </div>
               </div>
 
