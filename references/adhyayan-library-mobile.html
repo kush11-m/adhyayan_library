@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adhyayan Library | Premium Study Environment</title>
+<meta name="description" content="A premium study environment designed for students, aspirants, and professionals who are serious about achieving their goals.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --background: #F5EFE6;
+    --secondary-background: #E8DFD1;
+    --cream: #FFF8EE;
+    --text-primary: #2C241D;
+    --text-secondary: #5C534B;
+    --terracotta: #C96B4B;
+    --burnt-orange: #D97745;
+    --muted-gold: #B38B59;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ -webkit-text-size-adjust: 100%; }
+  body{
+    margin:0;
+    background: var(--background);
+    color: var(--text-primary);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family: inherit; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+  :focus-visible{ outline: 2px solid var(--burnt-orange); outline-offset: 2px; }
+
+  .wrap{ max-width: 480px; margin: 0 auto; padding: 0 16px; }
+
+  h1,h2,h3,h4{ margin:0; }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position: sticky; top:0; z-index: 50;
+    background: var(--cream);
+    border-bottom: 1px solid var(--secondary-background);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 12px 16px;
+    max-width: 480px; margin:0 auto;
+  }
+  .brand{ font-weight: 800; font-size: 16px; letter-spacing: -0.01em; }
+  .brand span{ color: var(--burnt-orange); }
+  .menu-btn{
+    width: 32px; height: 32px; border-radius: 7px;
+    border: none; background: transparent;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    cursor:pointer;
+  }
+  .menu-btn span{ width:18px; height:2px; background: var(--text-primary); border-radius:1px; transition: transform .2s ease, opacity .2s ease; }
+  .menu-btn.is-open span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+  .menu-btn.is-open span:nth-child(2){ opacity:0; }
+  .menu-btn.is-open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-nav{ max-height:0; overflow:hidden; transition: max-height .25s ease; background: var(--cream); border-bottom: 1px solid var(--secondary-background); }
+  .mobile-nav.is-open{ max-height: 300px; }
+  .mobile-nav-inner{ padding: 4px 16px 14px; display:flex; flex-direction:column; }
+  .mobile-nav-inner a{ padding: 10px 2px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--secondary-background); }
+  .mobile-nav-inner a:last-of-type{ border-bottom:none; }
+  .nav-cta{ margin-top: 10px; background: var(--burnt-orange); color: #fff !important; text-align:center; padding: 10px; border-radius: 8px; font-weight: 700; }
+
+  /* ---------- Hero (compact) ---------- */
+  .hero{ padding: 22px 0 0; }
+  .hero h1{
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 .accent{ color: var(--burnt-orange); }
+  .hero p{
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin: 8px 0 14px;
+    max-width: 360px;
+  }
+  .hero-ctas{ display:flex; gap:8px; margin-bottom: 18px; flex-wrap: wrap; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding: 10px 16px; border-radius: 8px;
+    font-weight: 700; font-size: 13px;
+    border: 1.4px solid transparent; cursor:pointer;
+  }
+  .btn-primary{ background: var(--burnt-orange); color:#fff; }
+  .btn-secondary{ background: transparent; border-color: var(--muted-gold); color: var(--text-primary); }
+
+  .hero-img{ border-radius: 10px; overflow:hidden; margin-bottom: 14px; }
+  .hero-img img{ width:100%; height: 160px; object-fit:cover; }
+
+  /* compact stat row */
+  .stat-row{
+    display:grid; grid-template-columns: 1fr 1fr 1fr;
+    background: var(--cream); border: 1px solid var(--secondary-background);
+    border-radius: 10px; margin-bottom: 26px;
+  }
+  .stat-cell{ text-align:center; padding: 10px 4px; border-right: 1px solid var(--secondary-background); }
+  .stat-cell:last-child{ border-right:none; }
+  .stat-num{ font-weight: 800; font-size: 14.5px; color: var(--terracotta); }
+  .stat-label{ font-size: 10px; color: var(--text-secondary); margin-top:2px; line-height:1.25; }
+
+  /* ---------- Section shell (tight) ---------- */
+  section{ padding: 26px 0; }
+  .section-title{ font-size: 19px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.01em; }
+  .section-sub{ font-size: 12.5px; color: var(--text-secondary); margin-bottom: 16px; }
+  hr.div{ border:none; height:1px; background: var(--secondary-background); margin: 0; }
+
+  /* ---------- Amenities: compact 2-col grid ---------- */
+  .amenity-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .amenity-card{
+    background: var(--cream); border: 1px solid var(--secondary-background);
+    border-radius: 10px; padding: 12px 10px;
+  }
+  .amenity-card .ic{ width:26px; height:26px; border-radius:7px; background: var(--secondary-background); display:flex; align-items:center; justify-content:center; margin-bottom:8px; }
+  .amenity-card .ic svg{ width:14px; height:14px; stroke: var(--terracotta); }
+  .amenity-card h3{ font-size: 12.5px; font-weight:700; margin-bottom:3px; line-height:1.3; }
+  .amenity-card p{ font-size: 11px; color: var(--text-secondary); margin:0; line-height:1.4; }
+
+  /* ---------- About (compact) ---------- */
+  .about-img{ border-radius: 10px; overflow:hidden; margin-bottom: 14px; }
+  .about-img img{ width:100%; height:140px; object-fit:cover; }
+  .about-copy p{ font-size: 13px; color: var(--text-secondary); margin: 0 0 14px; }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom: 16px; }
+  .pill{ font-size: 11px; font-weight:600; padding: 6px 10px; border-radius: 100px; background: var(--secondary-background); color: var(--text-primary); }
+  .who-box{ background: var(--cream); border: 1px solid var(--secondary-background); border-radius: 10px; padding: 14px; }
+  .who-box h4{ font-size: 13.5px; font-weight:700; margin-bottom:6px; }
+  .who-box p{ font-size: 12px; color: var(--text-secondary); margin: 0 0 10px; }
+  .exam-row{ display:flex; flex-wrap:wrap; gap:6px; }
+  .exam-pill{ font-size: 10.5px; font-weight:700; padding: 5px 9px; border-radius: 100px; background: var(--burnt-orange); color:#fff; }
+
+  /* ---------- Testimonials: simple stacked compact cards ---------- */
+  .testi-card{
+    background: var(--cream); border: 1px solid var(--secondary-background);
+    border-radius: 10px; padding: 13px 14px; margin-bottom: 10px;
+  }
+  .testi-card p{ font-size: 12.5px; color: var(--text-secondary); margin: 0 0 10px; line-height:1.5; }
+  .testi-person{ display:flex; align-items:center; gap:8px; }
+  .testi-person img{ width:30px; height:30px; border-radius:50%; object-fit:cover; }
+  .testi-person h4{ font-size: 12px; font-weight:700; }
+  .testi-person span{ font-size: 10.5px; color: var(--muted-gold); font-weight:600; }
+
+  /* ---------- Pricing: compact stacked ---------- */
+  .plan-card{
+    border-radius: 10px; padding: 16px 14px; margin-bottom: 10px;
+    background: var(--cream); border: 1px solid var(--secondary-background);
+    position:relative;
+  }
+  .plan-card.popular{ border-color: var(--burnt-orange); border-width: 1.6px; }
+  .popular-flag{
+    position:absolute; top:-9px; right:14px;
+    background: var(--burnt-orange); color:#fff;
+    font-size: 9.5px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase;
+    padding: 3px 8px; border-radius: 100px;
+  }
+  .plan-top{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom: 10px; }
+  .plan-name{ font-size: 14.5px; font-weight:800; }
+  .plan-price{ font-size: 16px; font-weight:800; color: var(--terracotta); }
+  .plan-price span{ font-size:10.5px; color: var(--text-secondary); font-weight:600; }
+  .plan-feats{ list-style:none; margin:0 0 12px; padding:0; display:flex; flex-direction:column; gap:5px; }
+  .plan-feats li{ font-size: 12px; color: var(--text-secondary); padding-left: 16px; position:relative; }
+  .plan-feats li::before{ content:"✓"; position:absolute; left:0; color: var(--terracotta); font-weight:700; font-size:11px; }
+  .plan-btn{ display:block; text-align:center; padding: 9px; border-radius: 7px; font-weight:700; font-size: 12.5px; background: var(--text-primary); color:#fff; }
+  .plan-card.popular .plan-btn{ background: var(--burnt-orange); }
+
+  /* ---------- Gallery: tight grid ---------- */
+  .gallery-grid{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .gallery-grid img{ width:100%; height: 76px; object-fit:cover; border-radius: 7px; }
+
+  /* ---------- Contact (compact) ---------- */
+  .contact-card{ background: var(--cream); border: 1px solid var(--secondary-background); border-radius: 10px; padding: 4px 14px; margin-bottom: 14px; }
+  .contact-row{ display:flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--secondary-background); align-items:flex-start; }
+  .contact-row:last-child{ border-bottom:none; }
+  .contact-row .ic{ width:26px; height:26px; border-radius:7px; background: var(--secondary-background); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .contact-row .ic svg{ width:13px; height:13px; stroke: var(--terracotta); }
+  .contact-row h4{ font-size: 10px; text-transform:uppercase; letter-spacing:0.04em; color: var(--muted-gold); margin-bottom:2px; font-weight:700; }
+  .contact-row p, .contact-row a{ font-size: 12.5px; font-weight:600; margin:0; line-height:1.4; }
+
+  .map-frame{ border-radius: 10px; overflow:hidden; border: 1px solid var(--secondary-background); margin-bottom: 16px; }
+  .map-frame iframe{ width:100%; height: 140px; border:0; display:block; }
+
+  .form-card{ background: var(--cream); border: 1px solid var(--secondary-background); border-radius: 10px; padding: 16px 14px; }
+  .form-card h3{ font-size: 15px; font-weight:800; margin-bottom: 12px; }
+  .field{ margin-bottom: 10px; }
+  .field label{ display:block; font-size: 11px; font-weight:700; color: var(--text-secondary); margin-bottom: 4px; }
+  .field input, .field textarea{
+    width:100%; background: var(--background); border: 1px solid var(--secondary-background);
+    border-radius: 7px; padding: 9px 10px; font-size: 13px; color: var(--text-primary); font-family: inherit;
+  }
+  .field textarea{ min-height: 64px; resize:vertical; }
+  .form-card .btn-primary{ width:100%; margin-top: 4px; padding: 11px; }
+
+  /* ---------- Footer (compact) ---------- */
+  footer{ background: var(--secondary-background); padding: 26px 0 calc(20px + env(safe-area-inset-bottom,0px)); }
+  .footer-brand{ font-weight: 800; font-size: 14.5px; margin-bottom: 8px; }
+  .footer-brand span{ color: var(--burnt-orange); }
+  footer p.desc{ font-size: 12px; color: var(--text-secondary); margin: 0 0 16px; max-width: 320px; }
+  .footer-links{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+  .footer-links h5{ font-size: 10.5px; text-transform:uppercase; letter-spacing:0.04em; color: var(--muted-gold); margin-bottom: 8px; font-weight:700; }
+  .footer-links ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+  .footer-links a{ font-size: 12px; color: var(--text-secondary); }
+  .footer-bottom{ border-top: 1px solid rgba(44,36,29,0.12); padding-top: 14px; display:flex; flex-direction:column; gap:6px; font-size: 11px; color: var(--text-secondary); }
+  .footer-bottom .legal{ display:flex; gap:12px; }
+  .footer-bottom .legal a{ color: var(--text-secondary); }
+</style>
+</head>
+<body>
+
+<!-- ===== Top bar ===== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="#home" class="brand">Adhyayan<span>Library</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-inner">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#pricing">Membership</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="#pricing" class="nav-cta">Join Now</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <h1>Where Focus Meets <span class="accent">Success</span></h1>
+    <p>A premium study environment designed for students, aspirants, and professionals who are serious about achieving their goals.</p>
+    <div class="hero-ctas">
+      <a href="#pricing" class="btn btn-primary">Join Adhyayan Today</a>
+      <a href="#about" class="btn btn-secondary">Explore Library</a>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Students studying in a premium modern library">
+    </div>
+    <div class="stat-row">
+      <div class="stat-cell"><div class="stat-num">175+</div><div class="stat-label">Dedicated Cabins</div></div>
+      <div class="stat-cell"><div class="stat-num">Night Shift</div><div class="stat-label">Option Available</div></div>
+      <div class="stat-cell"><div class="stat-num">AC Hall</div><div class="stat-label">5:30 AM–10:50 PM</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== Amenities ===== -->
+<section id="amenities">
+  <div class="wrap">
+    <div class="section-title">Built For Serious Learners</div>
+    <div class="section-sub">Every detail is meticulously crafted to support your academic journey.</div>
+    <div class="amenity-grid">
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10"/></svg></div>
+        <h3>Personal Cabins (175+ Seats)</h3>
+        <p>Fixed & dedicated desks with premium comfortable seating.</p>
+      </div>
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 12a9 9 0 0 1 18 0"/><path d="M3 12v6a2 2 0 0 0 2 2h2v-8H3z"/><path d="M21 12v6a2 2 0 0 1-2 2h-2v-8h4z"/></svg></div>
+        <h3>Noise-Free Full AC</h3>
+        <p>Fully air-conditioned, pin-drop silent halls all day.</p>
+      </div>
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8z"/></svg></div>
+        <h3>Power & Study Setup</h3>
+        <p>Individual charging points and study lights at every desk.</p>
+      </div>
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="2"/><path d="M12 13v3"/></svg></div>
+        <h3>Private Lockers</h3>
+        <p>Secure, personal lockers for books and valuables.</p>
+      </div>
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 12.5a7 7 0 0 1 14 0"/><path d="M2 16a10 10 0 0 1 20 0"/><circle cx="12" cy="19" r="1.5"/></svg></div>
+        <h3>High-Speed WiFi</h3>
+        <p>Enterprise-grade connectivity for uninterrupted learning.</p>
+      </div>
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2.5c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/></svg></div>
+        <h3>Free RO Water</h3>
+        <p>Purified hot, normal, and chilled water 24/7.</p>
+      </div>
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 8h18M7 12h6M7 15h4"/></svg></div>
+        <h3>Daily Newspapers</h3>
+        <p>Hindi and English papers updated daily.</p>
+      </div>
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg></div>
+        <h3>Safe & Secure</h3>
+        <p>24/7 CCTV monitoring and a trusted environment.</p>
+      </div>
+
+      <div class="amenity-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="9" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/><path d="M4 21v-2a4 4 0 0 1 4-4h2M14 21v-2a4 4 0 0 1 4-4h2"/></svg></div>
+        <h3>Separate Washrooms</h3>
+        <p>Regularly cleaned, separate facilities for boys and girls.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== About ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Interior of Adhyayan Library">
+    </div>
+    <div class="section-title">About Adhyayan Library</div>
+    <div class="about-copy">
+      <p>Adhyayan Library was created to provide students with a distraction-free environment where focus, consistency, and productivity become a daily habit. Every aspect of the space is designed to help learners stay committed to their academic goals.</p>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Silent Environment</span>
+      <span class="pill">Dedicated Study Desks</span>
+      <span class="pill">High-Speed WiFi</span>
+      <span class="pill">Comfortable Seating</span>
+      <span class="pill">Air Conditioning</span>
+      <span class="pill">Power Backup</span>
+    </div>
+    <div class="who-box">
+      <h4>Who It's For</h4>
+      <p>Ideal for students preparing for competitive exams who need a distraction-free space:</p>
+      <div class="exam-row">
+        <span class="exam-pill">UPSC</span>
+        <span class="exam-pill">SSC</span>
+        <span class="exam-pill">BANKING</span>
+        <span class="exam-pill">NEET</span>
+        <span class="exam-pill">JEE</span>
+        <span class="exam-pill">NDA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== Testimonials ===== -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="section-title">What Students Say</div>
+    <div class="section-sub">&nbsp;</div>
+
+    <div class="testi-card">
+      <p>"Adhyayan has completely transformed my preparation. The silent environment and comfortable seating allow me to study for 10-12 hours straight without any fatigue. Worth every penny."</p>
+      <div class="testi-person">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Rohan Sharma">
+        <div><h4>Rohan Sharma</h4><span>UPSC Aspirant</span></div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <p>"The high-speed WiFi and extended hours are exactly what I needed. The ambiance here feels incredibly premium and motivates me to push my limits every single day."</p>
+      <div class="testi-person">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sneha Patel">
+        <div><h4>Sneha Patel</h4><span>Medical Student</span></div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <p>"I've tried multiple libraries, but none compare to Adhyayan. The cleanliness, the management, and the overall peaceful vibe make it the best place for serious students."</p>
+      <div class="testi-person">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Karan Verma">
+        <div><h4>Karan Verma</h4><span>CA Finalist</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== Pricing ===== -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-title">Choose Your Membership</div>
+    <div class="section-sub">Flexible plans designed for every student.</div>
+
+    <div class="plan-card">
+      <div class="plan-top">
+        <div class="plan-name">Basic Plan</div>
+        <div class="plan-price">₹499<span>/mo</span></div>
+      </div>
+      <ul class="plan-feats">
+        <li>Daily Access</li>
+        <li>WiFi Access</li>
+        <li>Reading Area</li>
+      </ul>
+      <a href="https://www.adhyayanlibrary.online/join?plan=basic" class="plan-btn">Choose Basic Plan</a>
+    </div>
+
+    <div class="plan-card popular">
+      <span class="popular-flag">Most Popular</span>
+      <div class="plan-top">
+        <div class="plan-name">Monthly Pass (Standard)</div>
+        <div class="plan-price">₹999<span>/mo</span></div>
+      </div>
+      <ul class="plan-feats">
+        <li>Everything in Basic</li>
+        <li>Reserved Cabin Seat</li>
+        <li>Individual Charging & Light</li>
+        <li>Access to newspapers</li>
+      </ul>
+      <a href="https://www.adhyayanlibrary.online/join?plan=standard" class="plan-btn">Choose Standard Pass</a>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-top">
+        <div class="plan-name">Premium Plan</div>
+        <div class="plan-price">₹1499<span>/mo</span></div>
+      </div>
+      <ul class="plan-feats">
+        <li>Everything in Standard</li>
+        <li>Private Locker Space</li>
+        <li>Priority Cabin Selection</li>
+        <li>Unlimited 24/7 Access</li>
+      </ul>
+      <a href="https://www.adhyayanlibrary.online/join?plan=premium" class="plan-btn">Choose Premium Plan</a>
+    </div>
+
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== Gallery ===== -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-title">Inside Adhyayan</div>
+    <div class="section-sub">Designed for focus, comfort, and productivity.</div>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Adhyayan Library Gallery Image 1">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Adhyayan Library Gallery Image 2">
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Adhyayan Library Gallery Image 3">
+      <img src="https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Adhyayan Library Gallery Image 4">
+      <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Adhyayan Library Gallery Image 5">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Adhyayan Library Gallery Image 6">
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== Contact ===== -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-title">Get In Touch</div>
+    <div class="section-sub">&nbsp;</div>
+
+    <div class="contact-card">
+      <div class="contact-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
+        <div><h4>Contact Person</h4><p>Ridhi Maheshwari</p></div>
+      </div>
+      <div class="contact-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div><h4>Address</h4><p>55, MLB Colony, Padav, Gwalior (M.P.), 474002</p></div>
+      </div>
+      <div class="contact-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+        <div><h4>Phone Numbers</h4><p><a href="tel:9425744080">+91 9425744080</a> | <a href="tel:9340725050">+91 9340725050</a></p></div>
+      </div>
+      <div class="contact-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <div><h4>Email</h4><p><a href="mailto:ridhimaheshwari2004@gmail.com">ridhimaheshwari2004@gmail.com</a></p></div>
+      </div>
+      <div class="contact-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <div><h4>Operating Hours</h4><p>5:30 AM – 10:50 PM<br>Night Shift Also Available</p></div>
+      </div>
+    </div>
+
+    <div class="map-frame">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3579.5218764005934!2d78.17296067631388!3d26.212267677073286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3976c69784346ad7%3A0xe21262d9472f778d!2sMLB%20Colony%2C%20Padav%2C%20Gwalior%2C%20Madhya%20Pradesh%20474002!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Adhyayan Library location map"></iframe>
+    </div>
+
+    <div class="form-card">
+      <h3>Send an Inquiry</h3>
+      <form onsubmit="return false;">
+        <div class="field"><label for="name">Name *</label><input id="name" type="text" required></div>
+        <div class="field"><label for="phone">Phone Number *</label><input id="phone" type="tel" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email"></div>
+        <div class="field"><label for="msg">Message</label><textarea id="msg"></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-brand">Adhyayan<span>Library</span></div>
+    <p class="desc">Gwalior's premium self-study center. Creating an environment where discipline, focus, and success thrive.</p>
+    <div class="footer-links">
+      <div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Membership Plans</h5>
+        <ul>
+          <li><a href="#pricing">Basic Plan</a></li>
+          <li><a href="#pricing">Standard Plan</a></li>
+          <li><a href="#pricing">Premium Plan</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Adhyayan Library. All Rights Reserved.</span>
+      <span class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('is-open');
+    menuBtn.classList.toggle('is-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('.mobile-nav-inner a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('is-open');
+      menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>

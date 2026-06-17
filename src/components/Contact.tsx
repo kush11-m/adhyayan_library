@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock, CheckCircle2, User } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 bg-background">
+    <section id="contact" className="py-10 md:py-20 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           
@@ -43,9 +43,9 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold text-text-primary mb-1">Phone Numbers</h4>
                   <p className="text-text-secondary">
-                    <a href="tel:9425744080" className="hover:text-terracotta transition-colors">+91 9425744080</a>
+                    <a href="tel:9425744080" className="transition-colors">+91 9425744080</a>
                     <span className="mx-2">|</span>
-                    <a href="tel:9340725050" className="hover:text-terracotta transition-colors">+91 9340725050</a>
+                    <a href="tel:9340725050" className="transition-colors">+91 9340725050</a>
                   </p>
                 </div>
               </div>
@@ -55,7 +55,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold text-text-primary mb-1">Email</h4>
                   <p className="text-text-secondary">
-                    <a href="mailto:ridhimaheshwari2004@gmail.com" className="hover:text-terracotta transition-colors">
+                    <a href="mailto:ridhimaheshwari2004@gmail.com" className="transition-colors">
                       ridhimaheshwari2004@gmail.com
                     </a>
                   </p>
@@ -159,7 +159,7 @@ function ContactForm() {
               setFormData({ name: "", phone: "", email: "", message: "" });
               setIsSubmitted(false);
             }}
-            className="bg-text-primary text-cream px-6 py-2.5 rounded-full text-sm font-medium hover:bg-terracotta transition-colors shadow-md"
+            className="bg-text-primary text-cream px-6 py-2.5 rounded-full text-sm font-medium transition-colors shadow-md"
           >
             Send Another Message
           </button>
@@ -227,7 +227,7 @@ function ContactForm() {
         <button 
           type="submit"
           disabled={loading}
-          className="w-full bg-text-primary text-cream py-4 rounded-full font-medium hover:bg-terracotta transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-2"
+          className="w-full bg-text-primary text-cream py-4 rounded-full font-medium transition-colors shadow-lg duration-200 disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-2"
         >
           {loading ? (
             <div className="w-5 h-5 border-2 border-cream border-t-transparent rounded-full animate-spin"></div>

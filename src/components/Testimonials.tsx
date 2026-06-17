@@ -28,31 +28,61 @@ export default function Testimonials() {
   const doubleTestimonials = [...TESTIMONIALS, ...TESTIMONIALS];
 
   return (
-    <section id="testimonials" className="py-24 bg-secondary-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+    <section id="testimonials" className="py-10 md:py-20 bg-secondary-background overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="text-left md:text-center max-w-2xl mx-auto mb-6 md:mb-12">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-serif font-bold text-text-primary mb-4"
+            className="text-[19px] md:text-5xl font-serif font-bold text-text-primary mb-1 md:mb-4 tracking-[-0.01em] md:tracking-normal"
           >
             What Students Say
           </motion.h2>
+          <div className="text-[12.5px] text-text-secondary mb-4 md:hidden">&nbsp;</div>
         </div>
       </div>
 
-      {/* Infinite scrolling marquee container */}
-      <div className="relative w-full overflow-hidden flex py-4 select-none">
+      {/* Mobile Stacked Cards */}
+      <div className="md:hidden max-w-7xl mx-auto px-4">
+        {TESTIMONIALS.map((testimonial, index) => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.15 }}
+            key={index}
+            className="bg-cream border-none shadow-sm rounded-[10px] p-[13px_14px] mb-3"
+          >
+            <p className="text-[12.5px] text-text-secondary m-0 mb-[10px] leading-[1.5]">
+              "{testimonial.review}"
+            </p>
+            <div className="flex items-center gap-[8px]">
+              <img 
+                src={testimonial.image} 
+                alt={testimonial.name}
+                className="w-[30px] h-[30px] rounded-full object-cover" 
+              />
+              <div className="flex flex-col">
+                <h4 className="font-bold text-text-primary text-[12px] leading-tight m-0">{testimonial.name}</h4>
+                <span className="text-[10.5px] text-muted-gold font-semibold leading-tight m-0">{testimonial.course}</span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Desktop Infinite scrolling marquee container */}
+      <div className="hidden md:flex relative w-full overflow-hidden py-4 select-none">
         {/* Subtle blur gradients on sides for premium editorial look */}
         <div className="absolute top-0 bottom-0 left-0 w-20 bg-gradient-to-r from-secondary-background to-transparent z-10 pointer-events-none"></div>
         <div className="absolute top-0 bottom-0 right-0 w-20 bg-gradient-to-l from-secondary-background to-transparent z-10 pointer-events-none"></div>
 
         <div className="flex animate-marquee gap-6 hover:[animation-play-state:paused] w-max">
           {doubleTestimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={index}
-              className="glass p-6 rounded-[24px] w-[300px] md:w-[360px] flex-shrink-0 flex flex-col justify-between whitespace-normal"
+              className="glass p-6 rounded-[24px] w-[360px] flex-shrink-0 flex flex-col justify-between whitespace-normal"
             >
               <div>
                 <div className="flex text-muted-gold mb-3">
@@ -60,7 +90,7 @@ export default function Testimonials() {
                     <Star key={i} size={14} className="fill-current" />
                   ))}
                 </div>
-                <p className="text-text-secondary text-sm md:text-base leading-relaxed mb-4 italic">
+                <p className="text-text-secondary text-base leading-relaxed mb-4 italic">
                   "{testimonial.review}"
                 </p>
               </div>
@@ -75,7 +105,7 @@ export default function Testimonials() {
                   <p className="text-xs text-terracotta font-medium">{testimonial.course}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
