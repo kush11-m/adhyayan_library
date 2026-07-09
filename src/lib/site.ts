@@ -395,6 +395,68 @@ export const seoPages = [
     ],
   },
   {
+    slug: "study-centres-in-gwalior",
+    title: "Study Centres in Gwalior",
+    metaTitle: "Study Centres in Gwalior | Self Study at Adhyayan Library",
+    description:
+      "Compare study centres in Gwalior and see how Adhyayan Library in Padav supports serious preparation with silent AC halls, cabin desks, WiFi, charging, lockers, CCTV, RO water, and long hours.",
+    eyebrow: "Study centres in Gwalior",
+    h1: "Study Centres in Gwalior for daily preparation",
+    intro:
+      "Google results for study centres in Gwalior are dominated by local listings and directories. Students still need one clear official page that explains what to compare before choosing a daily study space.",
+    primaryIntent:
+      "Adhyayan Library is positioned for students who want a self-study centre rather than coaching classes: a quiet place to sit, read, revise, attend online classes, and maintain a disciplined study routine.",
+    highlights: [
+      "Use this page to compare facilities, location, hours, and official contact details",
+      "Central Padav address for students searching near Lashkar, Phool Bagh, Kampoo, and Gwalior Junction",
+      "Facilities include AC halls, 175+ cabin desks, WiFi, charging, lockers, CCTV, newspapers, and RO water",
+      "Useful for UPSC, MPPSC, SSC, banking, railway, NEET, JEE, NDA, CA, and college exam preparation",
+    ],
+    faqs: [
+      {
+        question: "Is Adhyayan Library a coaching study centre?",
+        answer:
+          "Adhyayan Library is a self-study centre and reading room, not a coaching institute. It provides the focused environment and facilities students need for independent study.",
+      },
+      {
+        question: "What makes a study centre useful for daily preparation?",
+        answer:
+          "A useful study centre should offer silence, comfortable seating, reliable hours, WiFi, charging, lockers, clean facilities, security, and an easy-to-reach location.",
+      },
+    ],
+  },
+  {
+    slug: "reading-libraries-in-gwalior",
+    title: "Reading Libraries in Gwalior",
+    metaTitle: "Reading Libraries in Gwalior | Adhyayan Library Padav",
+    description:
+      "Looking for reading libraries in Gwalior? Adhyayan Library is a silent self-study reading library in Padav with AC seating, cabin desks, WiFi, lockers, charging points, CCTV, and long study hours.",
+    eyebrow: "Reading libraries in Gwalior",
+    h1: "Reading Libraries in Gwalior for focused self study",
+    intro:
+      "Students searching for reading libraries in Gwalior usually need a practical study seat, not just a list of public libraries. Adhyayan Library focuses on daily self-study facilities.",
+    primaryIntent:
+      "This page targets students comparing reading libraries, reading rooms, study rooms, and self-study libraries in Gwalior before choosing where to prepare every day.",
+    highlights: [
+      "Silent reading room environment for revision, mock tests, online lectures, and long study sessions",
+      "Personal cabin desks, individual power access, study lights, lockers, and WiFi",
+      "Official contact and Maps-linked address for Adhyayan Library at 55, MLB Colony, Padav",
+      "Membership options available through the official website, contact page, and phone numbers",
+    ],
+    faqs: [
+      {
+        question: "Are reading libraries different from public libraries?",
+        answer:
+          "Many students use the term reading library for a paid self-study space with desks, silence, and facilities. Adhyayan Library is built for that self-study use case.",
+      },
+      {
+        question: "Where is Adhyayan Library for reading and self study?",
+        answer:
+          "Adhyayan Library is at 55, MLB Colony, Padav, Gwalior, Madhya Pradesh 474002.",
+      },
+    ],
+  },
+  {
     slug: "best-library-in-gwalior",
     title: "Best Library in Gwalior",
     metaTitle: "Best Library in Gwalior for Self Study | Adhyayan Library",
