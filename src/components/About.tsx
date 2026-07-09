@@ -21,7 +21,7 @@ export default function About() {
         <div className="relative h-[180px] md:h-[600px] rounded-[10px] md:rounded-[40px] overflow-hidden shadow-none md:shadow-2xl">
           <img 
             src="https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-            alt="Interior of Adhyayan Library"
+            alt="Interior of Adhyayan Library self study centre in Padav Gwalior"
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
@@ -38,7 +38,7 @@ export default function About() {
             About Adhyayan Library
           </h2>
           <p className="text-[13px] md:text-lg text-text-secondary leading-normal md:leading-relaxed mb-4 md:mb-8">
-            Adhyayan Library was created to provide students with a distraction-free environment where focus, consistency, and productivity become a daily habit. Every aspect of the space is designed to help learners stay committed to their academic goals.
+            Adhyayan Library was created to provide Gwalior students with a distraction-free self-study environment where focus, consistency, and productivity become a daily habit. Every aspect of the Padav reading room is designed to help learners stay committed to competitive exams and academic goals.
           </p>
 
           <div className="flex flex-wrap gap-[6px] md:gap-4 mb-6 md:mb-8 md:grid md:grid-cols-2">
@@ -58,8 +58,8 @@ export default function About() {
           </div>
 
           <div className="bg-cream md:bg-transparent border-none md:border-t md:border-text-primary/5 rounded-[10px] md:rounded-none p-3.5 md:p-0 mb-0 md:mb-10 md:pt-6">
-            <h4 className="text-[13.5px] md:text-sm font-bold md:font-semibold text-text-primary md:text-muted-gold mb-1.5 md:mb-2">Who It's For</h4>
-            <p className="text-[12px] md:text-sm text-text-secondary mb-2.5 md:mb-4">Ideal for students preparing for competitive exams who need a distraction-free space:</p>
+            <h4 className="text-[13.5px] md:text-sm font-bold md:font-semibold text-text-primary md:text-muted-gold mb-1.5 md:mb-2">Who It&apos;s For</h4>
+            <p className="text-[12px] md:text-sm text-text-secondary mb-2.5 md:mb-4">Ideal for Gwalior students preparing for competitive exams who need a distraction-free space:</p>
             <div className="flex flex-wrap gap-1.5 md:gap-2">
               {["UPSC", "SSC", "BANKING", "NEET", "JEE", "NDA"].map((exam, index) => (
                 <motion.span 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Wifi, BookOpen, Armchair, Moon, Clock, Wind } from "lucide-react";
+import { Star, Armchair, Moon, Clock, Wind } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -26,17 +26,17 @@ export default function Hero() {
           <div className="inline-flex items-center self-start space-x-1.5 bg-cream/80 px-3 py-1 rounded-full shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-terracotta animate-pulse"></span>
             <span className="text-text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.08em]">
-              Gwalior's Premium Study Hub
+              Padav, Gwalior Self Study Centre
             </span>
           </div>
 
           <div className="space-y-3 md:space-y-4">
             <h1 className="text-[32px] leading-[1.12] sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-text-primary tracking-[-0.02em] md:tracking-normal md:leading-tight">
-              Where <span className="text-terracotta italic font-normal">Focus</span> <br className="md:hidden" /> Meets <span className="relative inline-block text-burnt-orange">Success<span className="absolute bottom-1 left-0 w-full h-[3px] bg-terracotta/20 rounded"></span></span>
+              Gwalior Library For <span className="text-terracotta italic font-normal">Focused</span> <br className="md:hidden" /> Self Study
             </h1>
             
             <p className="text-[14px] md:text-xl text-text-secondary max-w-[360px] md:max-w-lg leading-relaxed mt-2 mb-1 md:my-0 font-medium">
-              A premium study environment designed for students, aspirants, and professionals who are serious about achieving their goals.
+              Adhyayan Library in Padav, Gwalior gives students and exam aspirants a silent AC reading room, personal cabin desks, WiFi, lockers, and long study hours.
             </p>
 
             {/* Social Proof Review Indicator */}
@@ -70,7 +70,7 @@ export default function Hero() {
         <div className="relative h-[200px] md:h-[600px] w-full rounded-2xl md:rounded-[40px] overflow-hidden shadow-sm md:shadow-2xl mt-4 mb-4 md:my-0 border-none md:border md:border-secondary-background/40">
           <img 
             src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-            alt="Students studying in a premium modern library"
+            alt="Students studying in a silent AC self study library in Gwalior"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/10"></div>

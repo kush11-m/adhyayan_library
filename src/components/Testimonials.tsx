@@ -55,7 +55,7 @@ export default function Testimonials() {
             className="bg-cream border-none shadow-sm rounded-[10px] p-[13px_14px] mb-3"
           >
             <p className="text-[12.5px] text-text-secondary m-0 mb-[10px] leading-[1.5]">
-              "{testimonial.review}"
+              &quot;{testimonial.review}&quot;
             </p>
             <div className="flex items-center gap-[8px]">
               <img 
@@ -91,7 +91,7 @@ export default function Testimonials() {
                   ))}
                 </div>
                 <p className="text-text-secondary text-base leading-relaxed mb-4 italic">
-                  "{testimonial.review}"
+                  &quot;{testimonial.review}&quot;
                 </p>
               </div>
               <div className="flex items-center space-x-3 mt-4 pt-4 border-t border-text-primary/5">

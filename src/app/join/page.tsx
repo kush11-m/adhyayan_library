@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, ArrowLeft, CheckCircle2, User, Mail, MessageSquare, BookOpen } from "lucide-react";
+import { business } from "@/lib/site";
 
 const LogoIcon = () => (
   <div className="relative flex items-center justify-center w-10 h-10 bg-terracotta/10 rounded-xl mr-3 text-terracotta">
@@ -22,22 +23,20 @@ const LogoIcon = () => (
 
 function JoinFormContent() {
   const searchParams = useSearchParams();
+  const planParam = searchParams.get("plan");
+  const initialPlan =
+    planParam && ["basic", "standard", "premium"].includes(planParam)
+      ? planParam
+      : "general";
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    plan: "general",
+    plan: initialPlan,
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const planParam = searchParams.get("plan");
-    if (planParam && ["basic", "standard", "premium"].includes(planParam)) {
-      setFormData((prev) => ({ ...prev, plan: planParam }));
-    }
-  }, [searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -217,18 +216,18 @@ function JoinFormContent() {
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <a
-                      href="tel:9425744080"
+                      href={`tel:${business.phone}`}
                       className="flex items-center gap-2 px-5 py-3 bg-white hover:bg-terracotta hover:text-cream border border-text-primary/5 rounded-full text-text-primary font-medium text-sm transition-all shadow-sm hover:shadow"
                     >
                       <Phone size={14} className="text-terracotta hover:text-inherit" />
-                      <span>+91 9425744080</span>
+                      <span>{business.displayPhone}</span>
                     </a>
                     <a
-                      href="tel:9340725050"
+                      href={`tel:${business.alternatePhone}`}
                       className="flex items-center gap-2 px-5 py-3 bg-white hover:bg-terracotta hover:text-cream border border-text-primary/5 rounded-full text-text-primary font-medium text-sm transition-all shadow-sm hover:shadow"
                     >
                       <Phone size={14} className="text-terracotta hover:text-inherit" />
-                      <span>+91 9340725050</span>
+                      <span>{business.alternateDisplayPhone}</span>
                     </a>
                   </div>
                 </motion.div>
@@ -250,7 +249,7 @@ function JoinFormContent() {
                 <div className="max-w-md mx-auto space-y-4">
                   <p className="text-text-secondary leading-relaxed">
                     Thank you, <span className="font-semibold text-text-primary">{formData.name}</span>. 
-                    Your membership reservation request for the <span className="font-semibold text-terracotta">{planLabels[formData.plan] || formData.plan}</span> has been forwarded to <span className="font-semibold text-terracotta">ridhimaheshwari2004@gmail.com</span>.
+                    Your membership reservation request for the <span className="font-semibold text-terracotta">{planLabels[formData.plan] || formData.plan}</span> has been forwarded to <span className="font-semibold text-terracotta">{business.email}</span>.
                   </p>
                   <p className="text-text-secondary text-sm">
                     Our team will contact you at <span className="font-medium text-text-primary">{formData.phone}</span> shortly to confirm slot timings, seat availability, and setup options.
@@ -265,12 +264,12 @@ function JoinFormContent() {
                     Need immediate confirmation?
                   </p>
                   <div className="flex justify-center gap-3">
-                    <a href="tel:9425744080" className="text-terracotta hover:text-burnt-orange font-semibold text-sm transition-colors">
-                      +91 9425744080
+                    <a href={`tel:${business.phone}`} className="text-terracotta hover:text-burnt-orange font-semibold text-sm transition-colors">
+                      {business.displayPhone}
                     </a>
                     <span className="text-text-secondary/30">|</span>
-                    <a href="tel:9340725050" className="text-terracotta hover:text-burnt-orange font-semibold text-sm transition-colors">
-                      +91 9340725050
+                    <a href={`tel:${business.alternatePhone}`} className="text-terracotta hover:text-burnt-orange font-semibold text-sm transition-colors">
+                      {business.alternateDisplayPhone}
                     </a>
                   </div>
                 </div>

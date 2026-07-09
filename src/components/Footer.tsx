@@ -1,6 +1,5 @@
 "use client";
 
-import { MapPin, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 const InstagramIcon = () => (
@@ -66,7 +65,7 @@ export default function Footer() {
               </span>
             </h3>
             <p className="text-[12.5px] md:text-base text-cream/70 leading-[1.6] md:leading-relaxed max-w-[280px] md:max-w-xs">
-              Gwalior's premium self-study center. Creating an environment where discipline, focus, and success thrive.
+              Gwalior&apos;s premium self-study center. Creating an environment where discipline, focus, and success thrive.
             </p>
             <div className="flex space-x-3 md:space-x-4">
               <a href="#" className="w-[32px] h-[32px] md:w-10 md:h-10 rounded-full bg-cream/10 flex items-center justify-center transition-colors">

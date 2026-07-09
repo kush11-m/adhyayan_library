@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, CheckCircle2, User } from "lucide-react";
+import { business } from "@/lib/site";
 
 export default function Contact() {
   return (
@@ -26,7 +27,7 @@ export default function Contact() {
                 <User className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
                   <h4 className="font-bold text-text-primary mb-1">Contact Person</h4>
-                  <p className="text-text-secondary">Ridhi Maheshwari</p>
+                  <p className="text-text-secondary">{business.contactPerson}</p>
                 </div>
               </div>
 
@@ -34,7 +35,7 @@ export default function Contact() {
                 <MapPin className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
                   <h4 className="font-bold text-text-primary mb-1">Address</h4>
-                  <p className="text-text-secondary">55, MLB Colony, Padav,<br/>Gwalior (M.P.), 474002</p>
+                  <p className="text-text-secondary">{business.streetAddress},<br/>{business.locality} (M.P.), {business.postalCode}</p>
                 </div>
               </div>
               
@@ -43,9 +44,9 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold text-text-primary mb-1">Phone Numbers</h4>
                   <p className="text-text-secondary">
-                    <a href="tel:9425744080" className="transition-colors">+91 9425744080</a>
+                    <a href={`tel:${business.phone}`} className="transition-colors">{business.displayPhone}</a>
                     <span className="mx-2">|</span>
-                    <a href="tel:9340725050" className="transition-colors">+91 9340725050</a>
+                    <a href={`tel:${business.alternatePhone}`} className="transition-colors">{business.alternateDisplayPhone}</a>
                   </p>
                 </div>
               </div>
@@ -55,8 +56,8 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold text-text-primary mb-1">Email</h4>
                   <p className="text-text-secondary">
-                    <a href="mailto:ridhimaheshwari2004@gmail.com" className="transition-colors">
-                      ridhimaheshwari2004@gmail.com
+                    <a href={`mailto:${business.email}`} className="transition-colors">
+                      {business.email}
                     </a>
                   </p>
                 </div>
@@ -66,7 +67,7 @@ export default function Contact() {
                 <Clock className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
                   <h4 className="font-bold text-text-primary mb-1">Operating Hours</h4>
-                  <p className="text-text-secondary">5:30 AM – 10:50 PM<br/><span className="text-terracotta font-semibold">Night Shift Also Available</span></p>
+                  <p className="text-text-secondary">{business.hours}<br/><span className="text-terracotta font-semibold">Night Shift Also Available</span></p>
                 </div>
               </div>
             </div>
@@ -81,6 +82,7 @@ export default function Contact() {
                 allowFullScreen={false} 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
+                title="Adhyayan Library location in Padav Gwalior"
                 className="absolute inset-0"
               ></iframe>
             </div>
@@ -147,7 +149,7 @@ function ContactForm() {
         <div className="space-y-4 max-w-sm mx-auto">
           <p className="text-text-secondary leading-relaxed text-sm">
             Thank you for reaching out, <span className="font-semibold text-text-primary">{formData.name}</span>. 
-            Your general inquiry details have been forwarded to <span className="font-semibold text-terracotta">ridhimaheshwari2004@gmail.com</span>.
+            Your general inquiry details have been forwarded to <span className="font-semibold text-terracotta">{business.email}</span>.
           </p>
           <p className="text-text-secondary text-xs">
             Our support team will review your message and reach back to you at <span className="font-medium text-text-primary">{formData.phone}</span> or <span className="font-medium text-text-primary">{formData.email || "provided email"}</span> shortly.
@@ -239,4 +241,3 @@ function ContactForm() {
     </>
   );
 }
-
