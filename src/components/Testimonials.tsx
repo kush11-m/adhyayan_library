@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Star } from "lucide-react";
 
 const TESTIMONIALS = [
@@ -58,10 +59,12 @@ export default function Testimonials() {
               &quot;{testimonial.review}&quot;
             </p>
             <div className="flex items-center gap-[8px]">
-              <img 
-                src={testimonial.image} 
+              <Image
+                src={testimonial.image}
                 alt={testimonial.name}
-                className="w-[30px] h-[30px] rounded-full object-cover" 
+                width={30}
+                height={30}
+                className="w-[30px] h-[30px] rounded-full object-cover"
               />
               <div className="flex flex-col">
                 <h4 className="font-bold text-text-primary text-[12px] leading-tight m-0">{testimonial.name}</h4>
@@ -95,10 +98,12 @@ export default function Testimonials() {
                 </p>
               </div>
               <div className="flex items-center space-x-3 mt-4 pt-4 border-t border-text-primary/5">
-                <img 
-                  src={testimonial.image} 
+                <Image
+                  src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-10 h-10 rounded-full object-cover border border-cream shadow-sm" 
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full object-cover border border-cream shadow-sm"
                 />
                 <div>
                   <h4 className="font-bold text-text-primary text-sm">{testimonial.name}</h4>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 
 const FEATURES = [
@@ -19,9 +20,11 @@ export default function About() {
         
         {/* Left Image */}
         <div className="relative h-[180px] md:h-[600px] rounded-[10px] md:rounded-[40px] overflow-hidden shadow-none md:shadow-2xl">
-          <img 
-            src="https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+          <Image
+            src="https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
             alt="Interior of Adhyayan Library self study centre in Padav Gwalior"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>

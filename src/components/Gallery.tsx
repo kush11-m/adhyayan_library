@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
 const IMAGES = [
@@ -66,9 +67,12 @@ export default function Gallery() {
                   transition={{ delay: index * 0.1 }}
                   className="break-inside-avoid relative rounded-[7px] md:rounded-3xl overflow-hidden mb-0 md:mb-6 h-[76px] md:h-auto"
                 >
-                  <img 
-                    src={src} 
-                    alt={`Adhyayan Library Gallery Image ${index + 1}`} 
+                  <Image
+                    src={src}
+                    alt={`Adhyayan Library Gallery Image ${index + 1}`}
+                    width={800}
+                    height={600}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 33vw"
                     className="w-full h-full md:h-auto object-cover"
                   />
                 </motion.div>
@@ -101,4 +105,3 @@ export default function Gallery() {
     </section>
   );
 }
-

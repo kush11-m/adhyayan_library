@@ -25,10 +25,56 @@ export const business = {
   openingHours: "Mo-Su 05:30-22:50",
   image:
     "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  logo: `${siteUrl}/favicon.svg`,
+  alternateName: [
+    "Adhyayan Library Gwalior",
+    "Adhyayan Library Padav",
+    "Adhyayan Self Study Centre",
+    "Adhyayan Study Library",
+  ],
   sameAs: [
     "https://www.google.com/maps/search/?api=1&query=55%2C%20MLB%20Colony%2C%20Padav%2C%20Gwalior%2C%20Madhya%20Pradesh%20474002",
   ],
 };
+
+export const amenities = [
+  "Silent AC study hall",
+  "175+ personal cabin desks",
+  "High-speed WiFi",
+  "Individual charging points",
+  "Dedicated study lights",
+  "Private lockers",
+  "CCTV monitoring",
+  "RO drinking water",
+  "Daily Hindi and English newspapers",
+  "Separate washrooms for boys and girls",
+];
+
+export const servedAreas = [
+  "Gwalior",
+  "Padav",
+  "MLB Colony",
+  "Lashkar",
+  "City Centre Gwalior",
+  "Kampoo",
+  "Phool Bagh",
+  "Gwalior Junction",
+  "Thatipur",
+  "Morar",
+];
+
+export const examCategories = [
+  "UPSC",
+  "MPPSC",
+  "SSC",
+  "Banking",
+  "Railway",
+  "NEET",
+  "JEE",
+  "NDA",
+  "CA",
+  "College exams",
+];
 
 export const localKeywords = [
   "library in Gwalior",
@@ -106,6 +152,37 @@ export const seoPages = [
     ],
   },
   {
+    slug: "self-study-centre-in-gwalior",
+    title: "Self Study Centre in Gwalior",
+    metaTitle: "Self Study Centre in Gwalior | Adhyayan Library",
+    description:
+      "Adhyayan Library is a self study centre in Gwalior for students who need silent AC seating, reserved cabin desks, WiFi, charging points, lockers, CCTV, RO water, and long daily hours.",
+    eyebrow: "Self study centre in Gwalior",
+    h1: "Self Study Centre in Gwalior",
+    intro:
+      "If you are searching for a self study centre in Gwalior, Adhyayan Library gives you a focused environment in Padav with the facilities students usually compare before joining.",
+    primaryIntent:
+      "The centre is built for daily preparation where silence, fixed seating, long hours, internet, power, and a disciplined study crowd matter more than decoration.",
+    highlights: [
+      "Personal cabin desks for fixed daily study routines",
+      "AC study hall and quiet reading room environment",
+      "High-speed WiFi, lockers, charging points, newspapers, and RO water",
+      "Useful for competitive exam aspirants and college students across Gwalior",
+    ],
+    faqs: [
+      {
+        question: "What facilities should I look for in a self study centre in Gwalior?",
+        answer:
+          "Look for silence, fixed seating, AC comfort, WiFi, charging points, lockers, clean washrooms, security, drinking water, and long hours. Adhyayan Library provides these facilities in Padav, Gwalior.",
+      },
+      {
+        question: "Can I reserve a cabin seat at Adhyayan Library?",
+        answer:
+          "Yes. Students can enquire for membership and cabin seat availability through the join page or by calling +91 9425744080 or +91 9340725050.",
+      },
+    ],
+  },
+  {
     slug: "gwalior-library",
     title: "Gwalior Library",
     metaTitle: "Gwalior Library | Reading Room & Study Library in Padav",
@@ -133,6 +210,99 @@ export const seoPages = [
         question: "Is Adhyayan Library useful for competitive exams?",
         answer:
           "Yes. The facility is designed for UPSC, MPPSC, SSC, banking, NEET, JEE, NDA, CA, and other exam aspirants.",
+      },
+    ],
+  },
+  {
+    slug: "library-in-gwalior",
+    title: "Library in Gwalior",
+    metaTitle: "Library in Gwalior | Adhyayan Library Reading Room",
+    description:
+      "Find a library in Gwalior for serious self study. Adhyayan Library in Padav offers AC reading rooms, cabin seating, WiFi, lockers, newspapers, RO water, and long study hours.",
+    eyebrow: "Library in Gwalior",
+    h1: "Library in Gwalior for focused study",
+    intro:
+      "Adhyayan Library is a study-focused library in Gwalior for students who need a reliable reading room instead of a noisy home or cafe environment.",
+    primaryIntent:
+      "This page helps students comparing libraries in Gwalior understand the exact facilities, location, timings, and membership path for Adhyayan Library.",
+    highlights: [
+      "Located in Padav, a central Gwalior area",
+      "Silent environment for study, reading, and revision",
+      "Membership plans for basic access, reserved seating, and premium facilities",
+      "Daily timing from 5:30 AM to 10:50 PM with night shift availability",
+    ],
+    faqs: [
+      {
+        question: "Is Adhyayan Library a public book-lending library?",
+        answer:
+          "Adhyayan Library is primarily a self-study library and reading room in Gwalior, focused on study seating and preparation facilities rather than book lending.",
+      },
+      {
+        question: "Which areas of Gwalior does Adhyayan Library serve?",
+        answer:
+          "Students from Padav, Lashkar, City Centre, Kampoo, Phool Bagh, Thatipur, Morar, and nearby areas can use Adhyayan Library for daily self study.",
+      },
+    ],
+  },
+  {
+    slug: "reading-room-in-gwalior",
+    title: "Reading Room in Gwalior",
+    metaTitle: "Reading Room in Gwalior | Silent AC Study Space",
+    description:
+      "Adhyayan Library offers a silent reading room in Gwalior with AC seating, personal cabin desks, WiFi, lockers, charging points, newspapers, CCTV, and RO water.",
+    eyebrow: "Reading room in Gwalior",
+    h1: "Reading Room in Gwalior with silent cabin seating",
+    intro:
+      "Students who need a reading room in Gwalior can use Adhyayan Library as a clean, quiet, structured space for revision, mock tests, online classes, and long daily preparation.",
+    primaryIntent:
+      "The reading room is designed for uninterrupted study, with practical facilities that support long hours instead of short casual visits.",
+    highlights: [
+      "Pin-drop silent study environment",
+      "Comfortable cabin seating for long reading sessions",
+      "WiFi, charging, lockers, RO water, and newspapers",
+      "A disciplined student environment for serious preparation",
+    ],
+    faqs: [
+      {
+        question: "Does Adhyayan Library provide a quiet reading room in Gwalior?",
+        answer:
+          "Yes. Adhyayan Library provides a silent AC reading room environment with cabin desks and daily study facilities.",
+      },
+      {
+        question: "Can I study for long hours at the reading room?",
+        answer:
+          "Yes. The regular timing is 5:30 AM to 10:50 PM, and night shift availability is listed for students who need extended hours.",
+      },
+    ],
+  },
+  {
+    slug: "best-library-in-gwalior",
+    title: "Best Library in Gwalior",
+    metaTitle: "Best Library in Gwalior for Self Study | Adhyayan Library",
+    description:
+      "Compare what makes a strong self-study library in Gwalior: silence, AC seating, cabin desks, WiFi, lockers, charging points, clean facilities, CCTV, and long hours at Adhyayan Library.",
+    eyebrow: "Best library in Gwalior",
+    h1: "Best Library in Gwalior for serious self study",
+    intro:
+      "The best library in Gwalior for exam preparation is the one you can use consistently. Adhyayan Library focuses on the fundamentals students need every day: silence, seating, power, internet, and disciplined hours.",
+    primaryIntent:
+      "This page explains why students shortlist Adhyayan Library when comparing self-study libraries and reading rooms in Gwalior.",
+    highlights: [
+      "175+ cabin desks for focused individual preparation",
+      "AC halls and noise-free study culture",
+      "Facilities that matter daily: WiFi, charging, lockers, RO water, newspapers, and CCTV",
+      "Central Padav address with official phone numbers and membership enquiry",
+    ],
+    faqs: [
+      {
+        question: "What makes a library good for self study in Gwalior?",
+        answer:
+          "A good self-study library should offer silence, comfortable seating, reliable hours, WiFi, charging, lockers, cleanliness, safety, and a disciplined crowd.",
+      },
+      {
+        question: "Why do students choose Adhyayan Library?",
+        answer:
+          "Students choose Adhyayan Library for its silent AC environment, personal cabin desks, long hours, central Padav location, and practical preparation facilities.",
       },
     ],
   },
@@ -170,3 +340,74 @@ export const seoPages = [
 ] as const;
 
 export type SeoPage = (typeof seoPages)[number];
+
+export const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["Library", "LocalBusiness"],
+  "@id": `${siteUrl}/#localbusiness`,
+  name: business.name,
+  legalName: business.legalName,
+  alternateName: business.alternateName,
+  description: business.description,
+  url: siteUrl,
+  logo: business.logo,
+  image: business.image,
+  email: business.email,
+  telephone: business.phone,
+  priceRange: business.priceRange,
+  openingHours: business.openingHours,
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "05:30",
+      closes: "22:50",
+    },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: business.streetAddress,
+    addressLocality: business.locality,
+    addressRegion: business.region,
+    postalCode: business.postalCode,
+    addressCountry: business.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: business.latitude,
+    longitude: business.longitude,
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: business.phone,
+      contactType: "customer service",
+      areaServed: "Gwalior",
+      availableLanguage: ["en", "hi"],
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: business.alternatePhone,
+      contactType: "customer service",
+      areaServed: "Gwalior",
+      availableLanguage: ["en", "hi"],
+    },
+  ],
+  amenityFeature: amenities.map((name) => ({
+    "@type": "LocationFeatureSpecification",
+    name,
+    value: true,
+  })),
+  knowsAbout: [...examCategories, "Self study", "Reading room", "Competitive exam preparation"],
+  areaServed: servedAreas,
+  hasMap: business.sameAs[0],
+  sameAs: business.sameAs,
+};

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Star, Armchair, Moon, Clock, Wind } from "lucide-react";
 
 export default function Hero() {
@@ -68,9 +69,12 @@ export default function Hero() {
 
         {/* Right Image & Floating Cards */}
         <div className="relative h-[200px] md:h-[600px] w-full rounded-2xl md:rounded-[40px] overflow-hidden shadow-sm md:shadow-2xl mt-4 mb-4 md:my-0 border-none md:border md:border-secondary-background/40">
-          <img 
-            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+          <Image
+            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
             alt="Students studying in a silent AC self study library in Gwalior"
+            fill
+            priority
+            sizes="(min-width: 768px) 50vw, 100vw"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/10"></div>

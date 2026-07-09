@@ -1,6 +1,6 @@
 import { BookOpenCheck, Clock, MapPin, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { business, seoPages } from "@/lib/site";
+import { amenities, business, examCategories, seoPages, servedAreas } from "@/lib/site";
 
 const SEARCH_INTENTS = [
   {
@@ -128,6 +128,36 @@ export default function LocalSeo() {
         </div>
 
         <div className="mt-8 md:mt-14">
+          <div className="grid md:grid-cols-3 gap-3 md:gap-5 mb-8 md:mb-14">
+            <article className="bg-secondary-background rounded-[10px] md:rounded-2xl p-4 md:p-6">
+              <h2 className="text-[16px] md:text-2xl font-serif font-bold text-text-primary mb-3">
+                Facilities at Adhyayan Library
+              </h2>
+              <p className="text-[12px] md:text-sm text-text-secondary leading-relaxed">
+                {amenities.slice(0, 6).join(", ")} and more support students
+                who need reliable daily self study in Gwalior.
+              </p>
+            </article>
+            <article className="bg-secondary-background rounded-[10px] md:rounded-2xl p-4 md:p-6">
+              <h2 className="text-[16px] md:text-2xl font-serif font-bold text-text-primary mb-3">
+                Exam preparation focus
+              </h2>
+              <p className="text-[12px] md:text-sm text-text-secondary leading-relaxed">
+                Students preparing for {examCategories.slice(0, 8).join(", ")}
+                {" "}and other exams can use the library for disciplined study.
+              </p>
+            </article>
+            <article className="bg-secondary-background rounded-[10px] md:rounded-2xl p-4 md:p-6">
+              <h2 className="text-[16px] md:text-2xl font-serif font-bold text-text-primary mb-3">
+                Nearby Gwalior areas
+              </h2>
+              <p className="text-[12px] md:text-sm text-text-secondary leading-relaxed">
+                The Padav location serves students from {servedAreas.slice(2, 8).join(", ")}
+                {" "}and other nearby areas.
+              </p>
+            </article>
+          </div>
+
           <h2 className="text-[19px] md:text-4xl font-serif font-bold text-text-primary mb-4">
             Questions students ask before choosing a library
           </h2>

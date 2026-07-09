@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   creator: business.name,
   publisher: business.name,
   category: "Education",
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -74,6 +75,12 @@ export const metadata: Metadata = {
   appleWebApp: {
     title: business.name,
     capable: true,
+  },
+  other: {
+    "geo.region": "IN-MP",
+    "geo.placename": "Gwalior",
+    "geo.position": `${business.latitude};${business.longitude}`,
+    ICBM: `${business.latitude}, ${business.longitude}`,
   },
 };
 

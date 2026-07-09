@@ -2,7 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CheckCircle2, Clock, MapPin, Phone } from "lucide-react";
-import { business, seoPages, siteUrl, type SeoPage } from "@/lib/site";
+import {
+  amenities,
+  business,
+  examCategories,
+  localBusinessJsonLd,
+  seoPages,
+  servedAreas,
+  siteUrl,
+  type SeoPage,
+} from "@/lib/site";
 
 type PageProps = {
   params: Promise<{
@@ -59,7 +68,9 @@ export default async function SeoLandingPage({ params }: PageProps) {
   }
 
   const pageUrl = `${siteUrl}/${page.slug}`;
+  const relatedPages = seoPages.filter((item) => item.slug !== page.slug);
   const structuredData = [
+    localBusinessJsonLd,
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -200,6 +211,51 @@ export default async function SeoLandingPage({ params }: PageProps) {
         </div>
       </section>
 
+      <section className="px-4 md:px-6 pb-12 md:pb-16">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-4">
+          <article className="bg-secondary-background rounded-[12px] md:rounded-2xl p-5 md:p-6">
+            <h2 className="font-serif font-bold text-xl md:text-2xl mb-3">
+              Facilities included
+            </h2>
+            <ul className="space-y-2 text-[12.5px] md:text-sm text-text-secondary">
+              {amenities.slice(0, 7).map((item) => (
+                <li key={item} className="flex gap-2">
+                  <CheckCircle2 size={15} className="text-terracotta flex-shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="bg-secondary-background rounded-[12px] md:rounded-2xl p-5 md:p-6">
+            <h2 className="font-serif font-bold text-xl md:text-2xl mb-3">
+              Useful for exams
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {examCategories.map((exam) => (
+                <span
+                  key={exam}
+                  className="bg-cream rounded-full px-3 py-1.5 text-[11px] md:text-xs font-bold text-text-primary"
+                >
+                  {exam}
+                </span>
+              ))}
+            </div>
+          </article>
+
+          <article className="bg-secondary-background rounded-[12px] md:rounded-2xl p-5 md:p-6">
+            <h2 className="font-serif font-bold text-xl md:text-2xl mb-3">
+              Areas served
+            </h2>
+            <p className="text-[12.5px] md:text-sm text-text-secondary leading-relaxed">
+              Students search from {servedAreas.slice(1, 7).join(", ")} and
+              nearby Gwalior areas when choosing Adhyayan Library for daily
+              self study.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section className="px-4 md:px-6 pb-12 md:pb-20">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-[22px] md:text-4xl font-serif font-bold mb-5">
@@ -215,6 +271,25 @@ export default async function SeoLandingPage({ params }: PageProps) {
                   {faq.answer}
                 </p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 md:px-6 pb-12 md:pb-20">
+        <div className="max-w-6xl mx-auto border-t border-text-primary/10 pt-8">
+          <h2 className="text-[18px] md:text-3xl font-serif font-bold mb-4">
+            Related Gwalior study searches
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {relatedPages.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/${item.slug}`}
+                className="bg-cream text-text-primary rounded-full px-3.5 py-2 text-[11px] md:text-sm font-bold"
+              >
+                {item.title}
+              </Link>
             ))}
           </div>
         </div>
