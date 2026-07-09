@@ -128,6 +128,7 @@ export default function Footer() {
                   { href: "/contact", label: "Official Contact" },
                   { href: "/membership", label: "Membership Plans" },
                   { href: "/join", label: "Reserve a Seat" },
+                  { href: "/local-seo-actions", label: "Local SEO Actions" },
                   { href: "/sitemap", label: "Site Map" },
                 ].map((link, i) => (
                   <motion.li

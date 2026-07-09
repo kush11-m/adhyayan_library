@@ -167,6 +167,34 @@ export const selectionChecklist = [
   },
 ];
 
+export const citationTargets = [
+  {
+    name: "Google Business Profile",
+    action:
+      "Keep the 55, Padav listing verified, add website URL, photos, services, hours, and respond to reviews.",
+  },
+  {
+    name: "Justdial",
+    action:
+      "Claim or update the Adhyayan Library listing with the same name, address, phones, website, hours, and category.",
+  },
+  {
+    name: "Gwalior Business Directory",
+    action:
+      "Update all Adhyayan Library entries so they point to the official website and the correct Padav contact details.",
+  },
+  {
+    name: "Instagram",
+    action:
+      "Use one official profile with matching NAP details and link to the website contact or membership page.",
+  },
+  {
+    name: "Local education communities",
+    action:
+      "Share the official contact page in student groups only where promotion is allowed and useful.",
+  },
+];
+
 export const localKeywords = [
   "library in Gwalior",
   "self study centre in Gwalior",

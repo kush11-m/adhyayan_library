@@ -35,6 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.5,
     },
+    {
+      url: `${siteUrl}/local-seo-actions`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
     ...seoPages.map((page) => ({
       url: `${siteUrl}/${page.slug}`,
       lastModified,
