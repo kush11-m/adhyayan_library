@@ -104,6 +104,49 @@ export const services = [
   },
 ];
 
+export const membershipPlans = [
+  {
+    slug: "basic",
+    name: "Basic Plan",
+    price: 499,
+    displayPrice: "Rs 499",
+    period: "Month",
+    description:
+      "Entry membership for daily access to the reading area, WiFi, and focused study environment.",
+    features: ["Daily Access", "WiFi Access", "Reading Area"],
+  },
+  {
+    slug: "standard",
+    name: "Monthly Pass (Standard)",
+    price: 999,
+    displayPrice: "Rs 999",
+    period: "Month",
+    description:
+      "Monthly membership with reserved cabin seating, individual charging and study light, and newspaper access.",
+    features: [
+      "Everything in Basic",
+      "Reserved Cabin Seat",
+      "Individual Charging & Light",
+      "Access to newspapers",
+    ],
+  },
+  {
+    slug: "premium",
+    name: "Premium Plan",
+    price: 1499,
+    displayPrice: "Rs 1499",
+    period: "Month",
+    description:
+      "Premium membership with locker space, priority cabin selection, and extended access options.",
+    features: [
+      "Everything in Standard",
+      "Private Locker Space",
+      "Priority Cabin Selection",
+      "Extended access options",
+    ],
+  },
+];
+
 export const selectionChecklist = [
   {
     name: "Check the study environment",
@@ -500,15 +543,29 @@ export const localBusinessJsonLd = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Adhyayan Library Gwalior study services",
-    itemListElement: services.map((service) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: service.name,
-        description: service.description,
-        areaServed: "Gwalior",
-      },
-    })),
+    itemListElement: [
+      ...services.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.name,
+          description: service.description,
+          areaServed: "Gwalior",
+        },
+      })),
+      ...membershipPlans.map((plan) => ({
+        "@type": "Offer",
+        price: plan.price,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        itemOffered: {
+          "@type": "Service",
+          name: plan.name,
+          description: plan.description,
+          areaServed: "Gwalior",
+        },
+      })),
+    ],
   },
   areaServed: servedAreas,
   hasMap: business.sameAs[0],

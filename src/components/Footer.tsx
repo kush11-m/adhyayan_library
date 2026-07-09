@@ -126,6 +126,7 @@ export default function Footer() {
               <ul className="space-y-[10px] md:space-y-4 mb-0 md:mb-8">
                 {[
                   { href: "/contact", label: "Official Contact" },
+                  { href: "/membership", label: "Membership Plans" },
                   { href: "/join", label: "Reserve a Seat" },
                   { href: "/sitemap", label: "Site Map" },
                 ].map((link, i) => (
