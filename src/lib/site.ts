@@ -76,6 +76,34 @@ export const examCategories = [
   "College exams",
 ];
 
+export const services = [
+  {
+    name: "Self-study centre membership",
+    description:
+      "Daily and monthly access to a disciplined self-study centre in Padav, Gwalior.",
+  },
+  {
+    name: "Reading room access",
+    description:
+      "Silent AC reading room space for school, college, and competitive exam preparation.",
+  },
+  {
+    name: "Reserved cabin desk",
+    description:
+      "Personal cabin-style desk with individual charging point and study light.",
+  },
+  {
+    name: "Locker facility",
+    description:
+      "Private locker availability for members who need to store books, notes, and daily material.",
+  },
+  {
+    name: "Night shift study option",
+    description:
+      "Extended study availability for students who need late-night preparation slots.",
+  },
+];
+
 export const localKeywords = [
   "library in Gwalior",
   "self study centre in Gwalior",
@@ -307,6 +335,37 @@ export const seoPages = [
     ],
   },
   {
+    slug: "how-to-choose-self-study-centre-gwalior",
+    title: "How to Choose a Self Study Centre in Gwalior",
+    metaTitle: "How to Choose a Self Study Centre in Gwalior | Adhyayan Library",
+    description:
+      "A practical checklist for choosing a self study centre in Gwalior: silence, AC seating, cabin desks, WiFi, charging, lockers, CCTV, clean facilities, hours, and location.",
+    eyebrow: "Gwalior study centre checklist",
+    h1: "How to choose a self study centre in Gwalior",
+    intro:
+      "Students comparing self study centres in Gwalior should look beyond price and check whether the space supports consistent daily preparation.",
+    primaryIntent:
+      "This guide explains the factors students usually compare before joining a Gwalior reading room or study library, and shows how Adhyayan Library addresses those needs in Padav.",
+    highlights: [
+      "Check silence, seating comfort, AC, lighting, and desk availability",
+      "Confirm WiFi, charging points, lockers, RO water, washrooms, and CCTV",
+      "Choose a location and study hours that match your daily preparation routine",
+      "Verify official name, address, phone numbers, and membership details before joining",
+    ],
+    faqs: [
+      {
+        question: "What should I check before joining a self study centre in Gwalior?",
+        answer:
+          "Check the environment, seating, hours, location, WiFi, charging, lockers, water, washrooms, security, and whether the centre is suitable for your exam preparation routine.",
+      },
+      {
+        question: "Why is location important for a study library?",
+        answer:
+          "A central and reachable location makes it easier to maintain a daily study routine. Adhyayan Library is located at 55, MLB Colony, Padav, Gwalior.",
+      },
+    ],
+  },
+  {
     slug: "adhyayan-library-gwalior",
     title: "Adhyayan Library Gwalior",
     metaTitle: "Adhyayan Library Gwalior | Official Study Centre Website",
@@ -407,6 +466,31 @@ export const localBusinessJsonLd = {
     value: true,
   })),
   knowsAbout: [...examCategories, "Self study", "Reading room", "Competitive exam preparation"],
+  makesOffer: services.map((service) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: service.name,
+      description: service.description,
+      areaServed: "Gwalior",
+      provider: {
+        "@id": `${siteUrl}/#localbusiness`,
+      },
+    },
+  })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Adhyayan Library Gwalior study services",
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.name,
+        description: service.description,
+        areaServed: "Gwalior",
+      },
+    })),
+  },
   areaServed: servedAreas,
   hasMap: business.sameAs[0],
   sameAs: business.sameAs,

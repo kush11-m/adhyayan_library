@@ -8,6 +8,7 @@ import {
   examCategories,
   localBusinessJsonLd,
   seoPages,
+  services,
   servedAreas,
   siteUrl,
   type SeoPage,
@@ -269,6 +270,29 @@ export default async function SeoLandingPage({ params }: PageProps) {
                 </h3>
                 <p className="text-[12.5px] md:text-sm text-text-secondary leading-relaxed">
                   {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 md:px-6 pb-12 md:pb-20">
+        <div className="max-w-6xl mx-auto bg-cream rounded-[12px] md:rounded-2xl p-5 md:p-7">
+          <h2 className="text-[20px] md:text-3xl font-serif font-bold mb-4">
+            Services available at Adhyayan Library
+          </h2>
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            {services.map((service) => (
+              <article
+                key={service.name}
+                className="bg-background rounded-[10px] p-4"
+              >
+                <h3 className="font-bold text-[14px] md:text-lg mb-1">
+                  {service.name}
+                </h3>
+                <p className="text-[12.5px] md:text-sm text-text-secondary leading-relaxed">
+                  {service.description}
                 </p>
               </article>
             ))}
