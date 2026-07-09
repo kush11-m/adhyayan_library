@@ -1,5 +1,6 @@
 import { BookOpenCheck, Clock, MapPin, ShieldCheck } from "lucide-react";
-import { business } from "@/lib/site";
+import Link from "next/link";
+import { business, seoPages } from "@/lib/site";
 
 const SEARCH_INTENTS = [
   {
@@ -93,6 +94,17 @@ export default function LocalSeo() {
               <br />
               Daily hours: {business.hours}
             </address>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {seoPages.map((page) => (
+                <Link
+                  key={page.slug}
+                  href={`/${page.slug}`}
+                  className="bg-text-primary text-cream rounded-full px-3.5 py-2 text-[11px] md:text-sm font-bold"
+                >
+                  {page.title}
+                </Link>
+              ))}
+            </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-3 md:gap-5">

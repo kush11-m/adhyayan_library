@@ -32,7 +32,7 @@ export default function Hero() {
 
           <div className="space-y-3 md:space-y-4">
             <h1 className="text-[32px] leading-[1.12] sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-text-primary tracking-[-0.02em] md:tracking-normal md:leading-tight">
-              Gwalior Library For <span className="text-terracotta italic font-normal">Focused</span> <br className="md:hidden" /> Self Study
+              Adhyayan Library <span className="text-terracotta italic font-normal">Gwalior</span>
             </h1>
             
             <p className="text-[14px] md:text-xl text-text-secondary max-w-[360px] md:max-w-lg leading-relaxed mt-2 mb-1 md:my-0 font-medium">

@@ -27,6 +27,14 @@ export const metadata: Metadata = {
   creator: business.name,
   publisher: business.name,
   category: "Education",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   alternates: {
     canonical: "/",
   },

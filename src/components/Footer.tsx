@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { seoPages } from "@/lib/site";
 
 const InstagramIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[15px] h-[15px] md:w-[20px] md:h-[20px]">
@@ -82,10 +84,10 @@ export default function Footer() {
 
 
           {/* Links Wrapper for Mobile Grid */}
-          <div className="grid grid-cols-2 gap-6 md:gap-12 md:col-span-2 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 md:col-span-2 w-full">
             {/* Quick Links */}
             <div>
-              <motion.h4 
+              <motion.h4
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -95,7 +97,7 @@ export default function Footer() {
               </motion.h4>
               <ul className="space-y-[10px] md:space-y-4">
                 {["Home", "About Us", "Gallery", "Testimonials"].map((link, i) => (
-                  <motion.li 
+                  <motion.li
                     key={link}
                     custom={i}
                     initial="hidden"
@@ -106,6 +108,33 @@ export default function Footer() {
                     <a href={`#${link.toLowerCase().replace(" ", "")}`} className="text-[11px] md:text-base transition-colors flex items-center gap-1 group">
                       {link}
                     </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <motion.h4
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-[13px] md:text-lg text-cream font-bold mb-4 md:mb-6"
+              >
+                Gwalior Searches
+              </motion.h4>
+              <ul className="space-y-[10px] md:space-y-4">
+                {seoPages.map((page, i) => (
+                  <motion.li
+                    key={page.slug}
+                    custom={i + 8}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={linkVariants}
+                  >
+                    <Link href={`/${page.slug}`} className="text-[11px] md:text-base transition-colors flex items-center gap-1 group">
+                      {page.title}
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
