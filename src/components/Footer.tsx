@@ -2,27 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { seoPages } from "@/lib/site";
-
-const InstagramIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[15px] h-[15px] md:w-[20px] md:h-[20px]">
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-  </svg>
-);
-
-const FacebookIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[15px] h-[15px] md:w-[20px] md:h-[20px]">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-  </svg>
-);
-
-const TwitterIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[15px] h-[15px] md:w-[20px] md:h-[20px]">
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
-  </svg>
-);
+import { business, seoPages } from "@/lib/site";
 
 const LogoIcon = () => (
   <div className="relative flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-cream/10 rounded-[8px] md:rounded-xl mr-2.5 md:mr-3 text-cream">
@@ -69,16 +49,9 @@ export default function Footer() {
             <p className="text-[12.5px] md:text-base text-cream/70 leading-[1.6] md:leading-relaxed max-w-[280px] md:max-w-xs">
               Gwalior&apos;s premium self-study center. Creating an environment where discipline, focus, and success thrive.
             </p>
-            <div className="flex space-x-3 md:space-x-4">
-              <a href="#" className="w-[32px] h-[32px] md:w-10 md:h-10 rounded-full bg-cream/10 flex items-center justify-center transition-colors">
-                <InstagramIcon />
-              </a>
-              <a href="#" className="w-[32px] h-[32px] md:w-10 md:h-10 rounded-full bg-cream/10 flex items-center justify-center transition-colors">
-                <FacebookIcon />
-              </a>
-              <a href="#" className="w-[32px] h-[32px] md:w-10 md:h-10 rounded-full bg-cream/10 flex items-center justify-center transition-colors">
-                <TwitterIcon />
-              </a>
+            <div className="text-[11.5px] md:text-sm text-cream/70 leading-relaxed">
+              <p>{business.streetAddress}, {business.locality}</p>
+              <p>{business.displayPhone} | {business.alternateDisplayPhone}</p>
             </div>
           </motion.div>
 
@@ -96,7 +69,7 @@ export default function Footer() {
                 Quick Links
               </motion.h4>
               <ul className="space-y-[10px] md:space-y-4">
-                {["Home", "About Us", "Gallery", "Testimonials"].map((link, i) => (
+                {["Home", "About Us", "Gallery"].map((link, i) => (
                   <motion.li
                     key={link}
                     custom={i}
@@ -142,27 +115,31 @@ export default function Footer() {
 
             {/* Membership & Contact */}
             <div>
-              <motion.h4 
+              <motion.h4
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 className="text-[13px] md:text-lg text-cream font-bold mb-4 md:mb-6"
               >
-                Membership Plans
+                Contact
               </motion.h4>
               <ul className="space-y-[10px] md:space-y-4 mb-0 md:mb-8">
-                {["Basic Plan", "Standard Plan", "Premium Plan"].map((link, i) => (
-                  <motion.li 
-                    key={link}
+                {[
+                  { href: "/contact", label: "Official Contact" },
+                  { href: "/join", label: "Reserve a Seat" },
+                  { href: "/sitemap", label: "Site Map" },
+                ].map((link, i) => (
+                  <motion.li
+                    key={link.href}
                     custom={i + 4}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={linkVariants}
                   >
-                    <a href="#pricing" className="text-[11px] md:text-base transition-colors flex items-center gap-1 group">
-                      {link}
-                    </a>
+                    <Link href={link.href} className="text-[11px] md:text-base transition-colors flex items-center gap-1 group">
+                      {link.label}
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -180,8 +157,8 @@ export default function Footer() {
         >
           <p>© 2026 Adhyayan Library. All Rights Reserved.</p>
           <div className="flex space-x-4 md:space-x-6">
-            <a href="#" className="transition-colors">Privacy Policy</a>
-            <a href="#" className="transition-colors">Terms of Service</a>
+            <Link href="/contact" className="transition-colors">Contact</Link>
+            <Link href="/sitemap" className="transition-colors">Sitemap</Link>
           </div>
         </motion.div>
       </div>

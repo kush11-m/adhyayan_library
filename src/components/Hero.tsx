@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Star, Armchair, Moon, Clock, Wind } from "lucide-react";
+import { Armchair, Moon, Clock, Wind } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -40,14 +40,15 @@ export default function Hero() {
               Adhyayan Library in Padav, Gwalior gives students and exam aspirants a silent AC reading room, personal cabin desks, WiFi, lockers, and long study hours.
             </p>
 
-            {/* Social Proof Review Indicator */}
-            <div className="flex items-center space-x-1.5 pt-0.5 pb-1">
-              <div className="flex text-muted-gold space-x-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={11} className="fill-current" />
-                ))}
-              </div>
-              <span className="text-[11px] md:text-sm font-semibold text-text-secondary">Loved by 500+ Gwalior Students</span>
+            <div className="flex flex-wrap gap-2 pt-0.5 pb-1">
+              {["175+ cabin desks", "Padav location", "5:30 AM - 10:50 PM"].map((item) => (
+                <span
+                  key={item}
+                  className="bg-cream/80 text-text-secondary rounded-full px-3 py-1 text-[11px] md:text-sm font-semibold"
+                >
+                  {item}
+                </span>
+              ))}
             </div>
           </div>
 
