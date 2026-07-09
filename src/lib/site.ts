@@ -33,6 +33,7 @@ export const business = {
     "Adhyayan Study Library",
   ],
   sameAs: [
+    "https://www.google.com/maps?cid=8090411666555899379",
     "https://www.google.com/maps/search/?api=1&query=55%2C%20MLB%20Colony%2C%20Padav%2C%20Gwalior%2C%20Madhya%20Pradesh%20474002",
   ],
 };

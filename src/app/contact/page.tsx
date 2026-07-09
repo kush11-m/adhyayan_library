@@ -154,6 +154,12 @@ export default function ContactPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-3 mt-5">
                 <a
+                  href={business.sameAs[0]}
+                  className="text-center bg-burnt-orange text-white rounded-full px-5 py-3 text-sm font-bold"
+                >
+                  Open Google Maps Listing
+                </a>
+                <a
                   href="/adhyayan-library-gwalior.vcf"
                   className="text-center bg-text-primary text-cream rounded-full px-5 py-3 text-sm font-bold"
                 >
