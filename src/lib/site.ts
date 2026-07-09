@@ -104,6 +104,25 @@ export const services = [
   },
 ];
 
+export const selectionChecklist = [
+  {
+    name: "Check the study environment",
+    text: "Visit or ask about silence, seating comfort, AC, lighting, cleanliness, and whether the room supports long uninterrupted sessions.",
+  },
+  {
+    name: "Confirm daily facilities",
+    text: "Look for WiFi, individual charging, study lights, lockers, RO water, newspapers, clean washrooms, and CCTV before choosing a centre.",
+  },
+  {
+    name: "Match location and hours",
+    text: "Choose a location and timing window that you can follow every day. A library that is hard to reach often breaks study consistency.",
+  },
+  {
+    name: "Verify official contact details",
+    text: "Use the official name, address, phone numbers, and website before paying for a membership or reserving a cabin desk.",
+  },
+];
+
 export const localKeywords = [
   "library in Gwalior",
   "self study centre in Gwalior",

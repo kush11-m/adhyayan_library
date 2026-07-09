@@ -8,6 +8,7 @@ import {
   examCategories,
   localBusinessJsonLd,
   seoPages,
+  selectionChecklist,
   services,
   servedAreas,
   siteUrl,
@@ -100,6 +101,24 @@ export default async function SeoLandingPage({ params }: PageProps) {
         },
       })),
     },
+    ...(page.slug === "how-to-choose-self-study-centre-gwalior"
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "@id": `${pageUrl}#howto`,
+            name: "How to choose a self study centre in Gwalior",
+            description:
+              "A practical checklist for students comparing self-study centres and reading rooms in Gwalior.",
+            step: selectionChecklist.map((item, index) => ({
+              "@type": "HowToStep",
+              position: index + 1,
+              name: item.name,
+              text: item.text,
+            })),
+          },
+        ]
+      : []),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -270,6 +289,32 @@ export default async function SeoLandingPage({ params }: PageProps) {
                 </h3>
                 <p className="text-[12.5px] md:text-sm text-text-secondary leading-relaxed">
                   {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 md:px-6 pb-12 md:pb-20">
+        <div className="max-w-6xl mx-auto bg-cream rounded-[12px] md:rounded-2xl p-5 md:p-7">
+          <h2 className="text-[20px] md:text-3xl font-serif font-bold mb-4">
+            Checklist before joining a Gwalior study centre
+          </h2>
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            {selectionChecklist.map((item, index) => (
+              <article
+                key={item.name}
+                className="bg-background rounded-[10px] p-4"
+              >
+                <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-terracotta mb-1">
+                  Step {index + 1}
+                </p>
+                <h3 className="font-bold text-[14px] md:text-lg mb-1">
+                  {item.name}
+                </h3>
+                <p className="text-[12.5px] md:text-sm text-text-secondary leading-relaxed">
+                  {item.text}
                 </p>
               </article>
             ))}
