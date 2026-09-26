@@ -20,11 +20,11 @@ export const business = {
   country: "IN",
   latitude: 26.212267677073286,
   longitude: 78.17296067631388,
-  priceRange: "Rs 499 - Rs 1499 per month",
+  priceRange: "Rs 550 - Rs 850 per month",
   hours: "5:30 AM - 10:50 PM",
   openingHours: "Mo-Su 05:30-22:50",
-  image:
-    "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  image: `${siteUrl}/images/library/hero-study-hall.webp`,
+  shareImage: `${siteUrl}/images/library/og-image.webp`,
   logo: `${siteUrl}/favicon.svg`,
   alternateName: [
     "Adhyayan Library Gwalior",
@@ -32,11 +32,20 @@ export const business = {
     "Adhyayan Self Study Centre",
     "Adhyayan Study Library",
   ],
-  sameAs: [
-    "https://www.google.com/maps?cid=8090411666555899379",
-    "https://www.google.com/maps/search/?api=1&query=55%2C%20MLB%20Colony%2C%20Padav%2C%20Gwalior%2C%20Madhya%20Pradesh%20474002",
-  ],
+  sameAs: ["https://www.google.com/maps?cid=8090411666555899379"],
 };
+
+export const mapsUrl = business.sameAs[0];
+export const directionsUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=26.212267677073286%2C78.17296067631388&destination_place_id=ChIJ12o0hJfGdjkRjXcvR9liEuI";
+
+export function buildWhatsAppUrl(message: string) {
+  return `https://wa.me/${business.phone.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+}
+
+export const whatsappUrl = buildWhatsAppUrl(
+  "Hello Adhyayan Library, I would like to check cabin-seat availability and visit the Padav centre.",
+);
 
 export const amenities = [
   "Silent AC study hall",
@@ -108,42 +117,42 @@ export const services = [
 export const membershipPlans = [
   {
     slug: "basic",
-    name: "Basic Plan",
-    price: 499,
-    displayPrice: "Rs 499",
+    name: "Half Day (6 Hours)",
+    price: 550,
+    displayPrice: "Rs 550",
     period: "Month",
     description:
-      "Entry membership for daily access to the reading area, WiFi, and focused study environment.",
-    features: ["Daily Access", "WiFi Access", "Reading Area"],
+      "Six hours of daily access for students who need a focused half-day study schedule.",
+    features: ["6 Hours Daily", "WiFi Access", "Reading Area"],
   },
   {
     slug: "standard",
-    name: "Monthly Pass (Standard)",
-    price: 999,
-    displayPrice: "Rs 999",
+    name: "Full Day — Locker Unreserved",
+    price: 750,
+    displayPrice: "Rs 750",
     period: "Month",
     description:
-      "Monthly membership with reserved cabin seating, individual charging and study light, and newspaper access.",
+      "Full-day library access with an unreserved locker arrangement and the standard study facilities.",
     features: [
-      "Everything in Basic",
-      "Reserved Cabin Seat",
+      "Full-Day Access",
+      "Locker Unreserved",
       "Individual Charging & Light",
       "Access to newspapers",
     ],
   },
   {
     slug: "premium",
-    name: "Premium Plan",
-    price: 1499,
-    displayPrice: "Rs 1499",
+    name: "Full Day — Locker Reserved",
+    price: 850,
+    displayPrice: "Rs 850",
     period: "Month",
     description:
-      "Premium membership with locker space, priority cabin selection, and extended access options.",
+      "Full-day library access with a reserved locker and the complete study setup.",
     features: [
-      "Everything in Standard",
-      "Private Locker Space",
-      "Priority Cabin Selection",
-      "Extended access options",
+      "Full-Day Access",
+      "Reserved Locker",
+      "Individual Charging & Light",
+      "Access to newspapers",
     ],
   },
 ];
@@ -207,7 +216,7 @@ export const localKeywords = [
   "Adhyayan Library Gwalior",
 ];
 
-export const seoPages = [
+const allSeoPages = [
   {
     slug: "adhyayan-library",
     title: "Adhyayan Library",
@@ -461,13 +470,13 @@ export const seoPages = [
     title: "Best Library in Gwalior",
     metaTitle: "Best Library in Gwalior for Self Study | Adhyayan Library",
     description:
-      "Compare what makes a strong self-study library in Gwalior: silence, AC seating, cabin desks, WiFi, lockers, charging points, clean facilities, CCTV, and long hours at Adhyayan Library.",
+      "Compare Adhyayan Library in Padav for self study in Gwalior: ₹550 half day, ₹750 full day with an unreserved locker, or ₹850 with a reserved locker.",
     eyebrow: "Best library in Gwalior",
     h1: "Best Library in Gwalior for serious self study",
     intro:
       "The best library in Gwalior for exam preparation is the one you can use consistently. Adhyayan Library focuses on the fundamentals students need every day: silence, seating, power, internet, and disciplined hours.",
     primaryIntent:
-      "This page explains why students shortlist Adhyayan Library when comparing self-study libraries and reading rooms in Gwalior.",
+      "Use the facilities, current fee options, location, study hours, and visit checklist below to decide whether Adhyayan Library fits your daily preparation routine.",
     highlights: [
       "175+ cabin desks for focused individual preparation",
       "AC halls and noise-free study culture",
@@ -484,6 +493,16 @@ export const seoPages = [
         question: "Why do students choose Adhyayan Library?",
         answer:
           "Students choose Adhyayan Library for its silent AC environment, personal cabin desks, long hours, central Padav location, and practical preparation facilities.",
+      },
+      {
+        question: "What are the monthly fees at Adhyayan Library Gwalior?",
+        answer:
+          "The half-day six-hour plan is Rs 550 per month. Full-day access is Rs 750 with an unreserved locker or Rs 850 with a reserved locker, subject to availability.",
+      },
+      {
+        question: "Is Adhyayan Library suitable for UPSC and MPPSC self study?",
+        answer:
+          "Yes. It is an independent self-study space with cabin desks, WiFi, charging points, study lights, AC, and long hours for UPSC, MPPSC, SSC, banking, and other exam preparation.",
       },
     ],
   },
@@ -550,6 +569,16 @@ export const seoPages = [
     ],
   },
 ] as const;
+
+const canonicalSeoSlugs = [
+  "best-library-in-gwalior",
+  "how-to-choose-self-study-centre-gwalior",
+  "adhyayan-library-gwalior",
+] as const;
+
+export const seoPages = allSeoPages.filter((page) =>
+  canonicalSeoSlugs.some((slug) => slug === page.slug),
+);
 
 export type SeoPage = (typeof seoPages)[number];
 

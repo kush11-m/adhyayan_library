@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
@@ -64,6 +63,9 @@ export default function Navbar() {
         <button
           className="md:hidden text-text-primary p-1"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -71,11 +73,8 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+        <div
+          id="mobile-navigation"
           className="md:hidden fixed inset-0 z-50 bg-cream/98 backdrop-blur-md flex flex-col justify-between px-6 py-4 pb-10 overflow-y-auto"
         >
           {/* Menu Header Area */}
@@ -89,6 +88,7 @@ export default function Navbar() {
             <button
               className="text-text-primary p-1"
               onClick={() => setIsOpen(false)}
+              aria-label="Close navigation menu"
             >
               <X size={20} />
             </button>
@@ -97,10 +97,7 @@ export default function Navbar() {
           {/* Menu Links */}
           <div className="flex flex-col space-y-6 my-auto py-8">
             {NAV_LINKS.map((link, idx) => (
-              <motion.a
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.05, duration: 0.3 }}
+              <a
                 key={link.name}
                 href={link.href}
                 className="text-2xl font-serif font-bold text-text-primary flex items-center justify-between group"
@@ -110,7 +107,7 @@ export default function Navbar() {
                 <span className="text-terracotta text-sm font-sans font-bold tracking-wider opacity-60">
                   0{idx + 1}
                 </span>
-              </motion.a>
+              </a>
             ))}
           </div>
 
@@ -134,9 +131,8 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
     </nav>
   );
 }
-

@@ -4,15 +4,15 @@ import { ArrowLeft, CheckCircle2, ExternalLink } from "lucide-react";
 import { business, citationTargets, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Local SEO Actions for Adhyayan Library Gwalior",
+  title: { absolute: "Local SEO Actions for Adhyayan Library Gwalior" },
   description:
     "Citation, Google Business Profile, and review checklist for strengthening Adhyayan Library Gwalior local search visibility.",
   alternates: {
     canonical: "/local-seo-actions",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
   },
 };
 

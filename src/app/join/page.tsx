@@ -3,9 +3,9 @@
 import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { Phone, ArrowLeft, CheckCircle2, User, Mail, MessageSquare, BookOpen } from "lucide-react";
-import { business } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
+import { buildWhatsAppUrl, business } from "@/lib/site";
 
 const LogoIcon = () => (
   <div className="relative flex items-center justify-center w-10 h-10 bg-terracotta/10 rounded-xl mr-3 text-terracotta">
@@ -50,17 +50,25 @@ function JoinFormContent() {
       return;
     }
     setLoading(true);
-    // Simulate API request
-    setTimeout(() => {
-      setLoading(false);
-      setIsSubmitted(true);
-    }, 1200);
+    const message = [
+      "Hello Adhyayan Library, I would like to enquire about a cabin seat.",
+      `Name: ${formData.name}`,
+      `Phone: ${formData.phone}`,
+      formData.email ? `Email: ${formData.email}` : "",
+      `Plan: ${planLabels[formData.plan] || formData.plan}`,
+      formData.message ? `Requirements: ${formData.message}` : "",
+    ].filter(Boolean).join("\n");
+
+    trackConversion("whatsapp_intent", { placement: "join_form", plan: formData.plan });
+    window.open(buildWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+    setLoading(false);
+    setIsSubmitted(true);
   };
 
   const planLabels: Record<string, string> = {
-    basic: "Basic Plan (₹499/Month)",
-    standard: "Monthly Pass - Standard (₹999/Month)",
-    premium: "Premium Plan (₹1499/Month)",
+    basic: "Half Day - 6 Hours (₹550/Month)",
+    standard: "Full Day - Locker Unreserved (₹750/Month)",
+    premium: "Full Day - Locker Reserved (₹850/Month)",
     general: "General Enquiry",
   };
 
@@ -85,16 +93,8 @@ function JoinFormContent() {
       {/* Main Content */}
       <main className="flex-grow flex items-center justify-center px-4 py-16 md:py-24">
         <div className="w-full max-w-2xl mx-auto">
-          <AnimatePresence mode="wait">
             {!isSubmitted ? (
-              <motion.div
-                key="form-card"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="space-y-8"
-              >
+              <div className="space-y-8">
                 {/* Form Intro */}
                 <div className="text-center">
                   <h1 className="text-4xl md:text-5xl font-serif font-bold text-text-primary mb-4 tracking-tight">
@@ -109,11 +109,12 @@ function JoinFormContent() {
                 <div className="glass p-6 md:p-10 rounded-[28px] md:rounded-[40px] shadow-xl border border-white/30">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                      <label className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
+                      <label htmlFor="join-name" className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
                         <User size={16} className="text-terracotta" />
                         Full Name <span className="text-terracotta">*</span>
                       </label>
                       <input
+                        id="join-name"
                         type="text"
                         name="name"
                         required
@@ -126,11 +127,12 @@ function JoinFormContent() {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
+                        <label htmlFor="join-phone" className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
                           <Phone size={16} className="text-terracotta" />
                           Phone Number <span className="text-terracotta">*</span>
                         </label>
                         <input
+                          id="join-phone"
                           type="tel"
                           name="phone"
                           required
@@ -142,11 +144,12 @@ function JoinFormContent() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
+                        <label htmlFor="join-email" className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
                           <Mail size={16} className="text-terracotta" />
                           Email Address
                         </label>
                         <input
+                          id="join-email"
                           type="email"
                           name="email"
                           value={formData.email}
@@ -158,29 +161,31 @@ function JoinFormContent() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
+                      <label htmlFor="join-plan" className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
                         <BookOpen size={16} className="text-terracotta" />
                         Selected Membership Plan
                       </label>
                       <select
+                        id="join-plan"
                         name="plan"
                         value={formData.plan}
                         onChange={handleChange}
                         className="w-full px-5 py-4 bg-white/50 border border-text-primary/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-terracotta/50 focus:border-transparent transition-all text-text-primary appearance-none cursor-pointer"
                       >
-                        <option value="basic">Basic Plan (₹499/Month)</option>
-                        <option value="standard">Monthly Pass - Standard (₹999/Month)</option>
-                        <option value="premium">Premium Plan (₹1499/Month)</option>
+                        <option value="basic">Half Day - 6 Hours (₹550/Month)</option>
+                        <option value="standard">Full Day - Locker Unreserved (₹750/Month)</option>
+                        <option value="premium">Full Day - Locker Reserved (₹850/Month)</option>
                         <option value="general">General Enquiry / Custom duration</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
+                      <label htmlFor="join-message" className="block text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
                         <MessageSquare size={16} className="text-terracotta" />
                         Message / Special Requirements
                       </label>
                       <textarea
+                        id="join-message"
                         name="message"
                         rows={3}
                         value={formData.message}
@@ -198,19 +203,14 @@ function JoinFormContent() {
                       {loading ? (
                         <div className="w-5 h-5 border-2 border-cream border-t-transparent rounded-full animate-spin"></div>
                       ) : (
-                        "Request Cabin Seat"
+                        "Continue in WhatsApp"
                       )}
                     </button>
                   </form>
                 </div>
 
                 {/* Direct Enquiry Section - Immediately Below the Form */}
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="bg-cream/40 border border-text-primary/5 rounded-[24px] p-6 text-center shadow-sm"
-                >
+                <div className="bg-cream/40 border border-text-primary/5 rounded-[24px] p-6 text-center shadow-sm">
                   <p className="text-text-secondary text-sm font-medium mb-4">
                     Have any questions before booking? Speak with us directly:
                   </p>
@@ -230,29 +230,22 @@ function JoinFormContent() {
                       <span>{business.alternateDisplayPhone}</span>
                     </a>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             ) : (
-              <motion.div
-                key="success-card"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ type: "spring", duration: 0.5 }}
-                className="glass p-8 md:p-12 rounded-[28px] md:rounded-[40px] text-center space-y-6 shadow-2xl border border-white/40"
-              >
+              <div className="glass p-8 md:p-12 rounded-[28px] md:rounded-[40px] text-center space-y-6 shadow-2xl border border-white/40">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/10 text-green-600 rounded-full mb-2">
                   <CheckCircle2 size={36} />
                 </div>
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-text-primary">
-                  Membership Request Received!
+                  Your seat enquiry is ready
                 </h2>
                 <div className="max-w-md mx-auto space-y-4">
                   <p className="text-text-secondary leading-relaxed">
-                    Thank you, <span className="font-semibold text-text-primary">{formData.name}</span>. 
-                    Your membership reservation request for the <span className="font-semibold text-terracotta">{planLabels[formData.plan] || formData.plan}</span> has been forwarded to <span className="font-semibold text-terracotta">{business.email}</span>.
+                    Thank you, <span className="font-semibold text-text-primary">{formData.name}</span>. We opened WhatsApp with your enquiry for the <span className="font-semibold text-terracotta">{planLabels[formData.plan] || formData.plan}</span> prepared for {business.displayPhone}.
                   </p>
                   <p className="text-text-secondary text-sm">
-                    Our team will contact you at <span className="font-medium text-text-primary">{formData.phone}</span> shortly to confirm slot timings, seat availability, and setup options.
+                    Nothing is sent until you review the message and press Send in WhatsApp. The team can then confirm current seat availability and timings.
                   </p>
                 </div>
 
@@ -282,9 +275,8 @@ function JoinFormContent() {
                     Return to Homepage
                   </Link>
                 </div>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
         </div>
       </main>
 

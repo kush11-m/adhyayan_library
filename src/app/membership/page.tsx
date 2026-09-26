@@ -9,16 +9,16 @@ import {
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Adhyayan Library Membership Plans",
+  title: { absolute: "Adhyayan Library Membership Plans | Gwalior" },
   description:
-    "Membership plans and cabin desk pricing for Adhyayan Library, a self-study centre and reading library in Padav, Gwalior.",
+    "Library fees in Gwalior: ₹550 for 6 hours, ₹750 full day with an unreserved locker, or ₹850 full day with a reserved locker at Adhyayan Library, Padav.",
   alternates: {
     canonical: "/membership",
   },
   openGraph: {
     title: "Adhyayan Library Membership Plans",
     description:
-      "Compare Basic, Standard, and Premium study library membership plans at Adhyayan Library Gwalior.",
+      "Compare ₹550 half-day and ₹750–₹850 full-day study library memberships at Adhyayan Library Gwalior.",
     url: `${siteUrl}/membership`,
   },
 };
@@ -90,9 +90,9 @@ export default function MembershipPage() {
           </h1>
           <p className="text-[14px] md:text-lg text-text-secondary leading-relaxed max-w-3xl">
             Compare membership options for Adhyayan Library in Padav, Gwalior.
-            Plans are designed for students who need a quiet reading room,
-            reserved cabin seating, WiFi, charging, lockers, and long study
-            hours.
+            Choose ₹550 for six hours, ₹750 for full-day access with an
+            unreserved locker, or ₹850 for full-day access with a reserved
+            locker. All prices shown are monthly.
           </p>
 
           <div className="grid md:grid-cols-3 gap-4 md:gap-6 mt-8">

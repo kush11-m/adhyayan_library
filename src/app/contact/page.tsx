@@ -4,7 +4,7 @@ import { ArrowLeft, Clock, Mail, MapPin, Phone, User } from "lucide-react";
 import { business, localBusinessJsonLd, seoPages, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact Adhyayan Library Gwalior",
+  title: { absolute: "Contact Adhyayan Library Gwalior" },
   description:
     "Official contact details, address, phone numbers, email, and study hours for Adhyayan Library in Padav, Gwalior.",
   alternates: {

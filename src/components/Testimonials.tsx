@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Armchair, Clock, Droplets, Lock, MapPin, ShieldCheck, Wifi, Wind } from "lucide-react";
 import { business } from "@/lib/site";
 
@@ -52,33 +49,18 @@ export default function Testimonials() {
     <section id="facilities-proof" className="py-10 md:py-20 bg-secondary-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-left md:text-center max-w-2xl mx-auto mb-6 md:mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[19px] md:text-5xl font-serif font-bold text-text-primary mb-1 md:mb-4 tracking-[-0.01em] md:tracking-normal"
-          >
+          <h2 className="text-[19px] md:text-5xl font-serif font-bold text-text-primary mb-1 md:mb-4 tracking-[-0.01em] md:tracking-normal">
             Why students shortlist Adhyayan Library
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-[12.5px] md:text-lg text-text-secondary"
-          >
+          </h2>
+          <p className="text-[12.5px] md:text-lg text-text-secondary">
             Clear facilities, address, and study timings for students comparing libraries and self-study centres in Gwalior.
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
-          {PROOF_POINTS.map((point, index) => (
-            <motion.article
+          {PROOF_POINTS.map((point) => (
+            <article
               key={point.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
               className="bg-cream rounded-[10px] md:rounded-2xl p-4 md:p-5"
             >
               <div className="w-9 h-9 rounded-[9px] bg-secondary-background flex items-center justify-center text-terracotta mb-3">
@@ -90,7 +72,7 @@ export default function Testimonials() {
               <p className="text-[11.5px] md:text-sm text-text-secondary leading-relaxed">
                 {point.detail}
               </p>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

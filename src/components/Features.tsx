@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Armchair, Wind, Zap, Lock, Wifi, Droplets, BookOpen, ShieldCheck, Users } from "lucide-react";
 
 const FEATURES = [
@@ -51,56 +48,23 @@ const FEATURES = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-} as const;
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-} as const;
-
 export default function Features() {
   return (
     <section className="py-10 md:py-20 bg-secondary-background">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-left md:text-center max-w-2xl mx-auto mb-6 md:mb-12">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[19px] md:text-4xl lg:text-5xl font-serif font-bold text-text-primary mb-1 md:mb-4 tracking-[-0.01em] md:tracking-normal"
-          >
+          <h2 className="text-[19px] md:text-4xl lg:text-5xl font-serif font-bold text-text-primary mb-1 md:mb-4 tracking-[-0.01em] md:tracking-normal">
             Built For Serious Learners
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-[12.5px] md:text-lg text-text-secondary"
-          >
+          </h2>
+          <p className="text-[12.5px] md:text-lg text-text-secondary">
             Every detail is meticulously crafted to support your academic journey.
-          </motion.p>
+          </p>
         </div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8"
-        >
-          {FEATURES.map((feature, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+          {FEATURES.map((feature) => (
+            <article
+              key={feature.title}
               className="bg-cream md:glass p-4 md:p-8 rounded-[10px] md:rounded-[32px] transition-all duration-300 border-none md:border md:border-transparent"
             >
               <div className="bg-secondary-background md:bg-cream w-[26px] h-[26px] md:w-14 md:h-14 rounded-[7px] md:rounded-2xl flex items-center justify-center text-terracotta mb-2 md:mb-6 [&>svg]:w-3.5 [&>svg]:h-3.5 md:[&>svg]:w-7 md:[&>svg]:h-7">
@@ -110,9 +74,9 @@ export default function Features() {
               <p className="text-[11px] md:text-base text-text-secondary leading-[1.4] md:leading-relaxed m-0">
                 {feature.description}
               </p>
-            </motion.div>
+            </article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

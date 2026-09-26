@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, CheckCircle2, User } from "lucide-react";
-import { business } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
+import { buildWhatsAppUrl, business } from "@/lib/site";
 
 export default function Contact() {
   return (
@@ -12,12 +12,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           
           {/* Left Side - Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass p-6 md:p-10 rounded-[24px] md:rounded-[40px] h-full flex flex-col"
-          >
+          <div className="glass p-6 md:p-10 rounded-[24px] md:rounded-[40px] h-full flex flex-col">
             <h2 className="text-4xl font-serif font-bold text-text-primary mb-8">
               Get In Touch
             </h2>
@@ -26,7 +21,7 @@ export default function Contact() {
               <div className="flex items-start space-x-4">
                 <User className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
-                  <h4 className="font-bold text-text-primary mb-1">Contact Person</h4>
+                  <h3 className="font-bold text-text-primary mb-1">Contact Person</h3>
                   <p className="text-text-secondary">{business.contactPerson}</p>
                 </div>
               </div>
@@ -34,7 +29,7 @@ export default function Contact() {
               <div className="flex items-start space-x-4">
                 <MapPin className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
-                  <h4 className="font-bold text-text-primary mb-1">Address</h4>
+                  <h3 className="font-bold text-text-primary mb-1">Address</h3>
                   <p className="text-text-secondary">{business.streetAddress},<br/>{business.locality} (M.P.), {business.postalCode}</p>
                 </div>
               </div>
@@ -42,7 +37,7 @@ export default function Contact() {
               <div className="flex items-start space-x-4">
                 <Phone className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
-                  <h4 className="font-bold text-text-primary mb-1">Phone Numbers</h4>
+                  <h3 className="font-bold text-text-primary mb-1">Phone Numbers</h3>
                   <p className="text-text-secondary">
                     <a href={`tel:${business.phone}`} className="transition-colors">{business.displayPhone}</a>
                     <span className="mx-2">|</span>
@@ -54,7 +49,7 @@ export default function Contact() {
               <div className="flex items-start space-x-4">
                 <Mail className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
-                  <h4 className="font-bold text-text-primary mb-1">Email</h4>
+                  <h3 className="font-bold text-text-primary mb-1">Email</h3>
                   <p className="text-text-secondary">
                     <a href={`mailto:${business.email}`} className="transition-colors">
                       {business.email}
@@ -66,7 +61,7 @@ export default function Contact() {
               <div className="flex items-start space-x-4">
                 <Clock className="text-terracotta mt-1 flex-shrink-0" size={24} />
                 <div>
-                  <h4 className="font-bold text-text-primary mb-1">Operating Hours</h4>
+                  <h3 className="font-bold text-text-primary mb-1">Operating Hours</h3>
                   <p className="text-text-secondary">{business.hours}<br/><span className="text-terracotta font-semibold">Night Shift Also Available</span></p>
                 </div>
               </div>
@@ -86,18 +81,12 @@ export default function Contact() {
                 className="absolute inset-0"
               ></iframe>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Side - Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="glass p-6 md:p-10 rounded-[24px] md:rounded-[40px] w-full"
-          >
+          <div className="glass p-6 md:p-10 rounded-[24px] md:rounded-[40px] w-full">
             <ContactForm />
-          </motion.div>
+          </div>
 
         </div>
       </div>
@@ -127,32 +116,35 @@ function ContactForm() {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setIsSubmitted(true);
-    }, 1000);
+    const message = [
+      "Hello Adhyayan Library, I am sending an enquiry from the website.",
+      `Name: ${formData.name}`,
+      `Phone: ${formData.phone}`,
+      formData.email ? `Email: ${formData.email}` : "",
+      formData.message ? `Message: ${formData.message}` : "",
+    ].filter(Boolean).join("\n");
+
+    trackConversion("whatsapp_intent", { placement: "contact_form" });
+    window.open(buildWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+    setLoading(false);
+    setIsSubmitted(true);
   };
 
   if (isSubmitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="text-center py-8 space-y-6"
-      >
+      <div className="text-center py-8 space-y-6">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/10 text-green-600 rounded-full">
           <CheckCircle2 size={36} />
         </div>
         <h3 className="text-2xl font-serif font-bold text-text-primary">
-          Inquiry Sent Successfully!
+          Your WhatsApp message is ready
         </h3>
         <div className="space-y-4 max-w-sm mx-auto">
           <p className="text-text-secondary leading-relaxed text-sm">
-            Thank you for reaching out, <span className="font-semibold text-text-primary">{formData.name}</span>. 
-            Your general inquiry details have been forwarded to <span className="font-semibold text-terracotta">{business.email}</span>.
+            Thank you, <span className="font-semibold text-text-primary">{formData.name}</span>. We opened WhatsApp with your enquiry prepared for {business.displayPhone}.
           </p>
           <p className="text-text-secondary text-xs">
-            Our support team will review your message and reach back to you at <span className="font-medium text-text-primary">{formData.phone}</span> or <span className="font-medium text-text-primary">{formData.email || "provided email"}</span> shortly.
+            Nothing is sent until you review the message and press Send in WhatsApp.
           </p>
         </div>
         <div className="pt-2">
@@ -166,17 +158,19 @@ function ContactForm() {
             Send Another Message
           </button>
         </div>
-      </motion.div>
+      </div>
     );
   }
 
   return (
     <>
-      <h3 className="text-3xl font-serif font-bold text-text-primary mb-8">Send an Inquiry</h3>
+      <h3 className="text-3xl font-serif font-bold text-text-primary mb-3">Send an Inquiry</h3>
+      <p className="text-sm text-text-secondary mb-8">Your details are prepared as a WhatsApp message. You stay in control and press Send yourself.</p>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-semibold text-text-primary mb-2">Name *</label>
+          <label htmlFor="contact-name" className="block text-sm font-semibold text-text-primary mb-2">Name *</label>
           <input 
+            id="contact-name"
             type="text" 
             name="name"
             required
@@ -189,8 +183,9 @@ function ContactForm() {
         
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-semibold text-text-primary mb-2">Phone Number *</label>
+            <label htmlFor="contact-phone" className="block text-sm font-semibold text-text-primary mb-2">Phone Number *</label>
             <input 
+              id="contact-phone"
               type="tel" 
               name="phone"
               required
@@ -202,8 +197,9 @@ function ContactForm() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-text-primary mb-2">Email</label>
+            <label htmlFor="contact-email" className="block text-sm font-semibold text-text-primary mb-2">Email</label>
             <input 
+              id="contact-email"
               type="email" 
               name="email"
               value={formData.email}
@@ -215,8 +211,9 @@ function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-text-primary mb-2">Message</label>
+          <label htmlFor="contact-message" className="block text-sm font-semibold text-text-primary mb-2">Message</label>
           <textarea 
+            id="contact-message"
             name="message"
             rows={4}
             value={formData.message}
@@ -234,7 +231,7 @@ function ContactForm() {
           {loading ? (
             <div className="w-5 h-5 border-2 border-cream border-t-transparent rounded-full animate-spin"></div>
           ) : (
-            "Send Inquiry"
+            "Continue in WhatsApp"
           )}
         </button>
       </form>

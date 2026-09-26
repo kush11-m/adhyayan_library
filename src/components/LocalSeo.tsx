@@ -50,6 +50,11 @@ const FAQS = [
     answer:
       "Yes. Adhyayan Library offers 175+ personal cabin desks, high-speed WiFi, individual charging points, study lights, and private lockers.",
   },
+  {
+    question: "What are the monthly library fees at Adhyayan Library Gwalior?",
+    answer:
+      "The six-hour half-day plan is Rs 550 per month. Full-day access is Rs 750 with an unreserved locker or Rs 850 with a reserved locker, subject to current seat and locker availability.",
+  },
 ];
 
 export { FAQS };
@@ -105,6 +110,22 @@ export default function LocalSeo() {
                 </Link>
               ))}
             </div>
+            <nav aria-label="Popular Gwalior library topics" className="mt-4 grid sm:grid-cols-2 gap-2">
+              {[
+                { href: "/best-library-in-gwalior", label: "Best self-study library in Gwalior" },
+                { href: "/best-library-in-gwalior", label: "UPSC and MPPSC study library" },
+                { href: "/membership", label: "Library fees and locker plans" },
+                { href: "/contact", label: "Library near Padav and Gwalior Junction" },
+              ].map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="rounded-xl border border-text-primary/10 bg-cream/60 px-3.5 py-3 text-[11px] md:text-sm font-semibold text-text-primary transition-colors hover:border-terracotta/30"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-3 md:gap-5">

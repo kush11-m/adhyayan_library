@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { seoPages, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Adhyayan Library Site Map",
+  title: { absolute: "Adhyayan Library Gwalior Site Map" },
   description:
     "HTML sitemap for Adhyayan Library Gwalior, including official contact, membership, and local study library pages.",
   alternates: {

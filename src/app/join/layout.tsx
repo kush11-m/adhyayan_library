@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { business, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Reserve a Study Cabin",
+  title: { absolute: "Reserve a Study Cabin | Adhyayan Library Gwalior" },
   description:
     "Reserve a cabin desk or membership at Adhyayan Library, a self-study centre and reading library in Padav, Gwalior.",
   alternates: {
@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Reserve a Study Cabin | Adhyayan Library Gwalior",
     description:
-      "Enquire for Basic, Standard, or Premium membership at Adhyayan Library in Padav, Gwalior.",
+      "Enquire for half-day or full-day membership at Adhyayan Library in Padav, Gwalior, with reserved and unreserved locker options.",
     url: `${siteUrl}/join`,
     images: [
       {
-        url: business.image,
+        url: business.shareImage,
         width: 1200,
         height: 630,
         alt: "Adhyayan Library Gwalior study cabin reservation",

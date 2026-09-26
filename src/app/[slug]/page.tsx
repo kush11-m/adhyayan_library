@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import BestLibraryGuide from "@/components/BestLibraryGuide";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CheckCircle2, Clock, MapPin, Phone } from "lucide-react";
 import {
@@ -40,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: page.metaTitle,
+    title: { absolute: page.metaTitle },
     description: page.description,
     alternates: {
       canonical: `/${page.slug}`,
@@ -51,7 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `${siteUrl}/${page.slug}`,
       images: [
         {
-          url: business.image,
+          url: business.shareImage,
           width: 1200,
           height: 630,
           alt: `${page.title} at Adhyayan Library Gwalior`,
@@ -190,6 +192,14 @@ export default async function SeoLandingPage({ params }: PageProps) {
           </div>
 
           <aside className="bg-cream rounded-[14px] md:rounded-2xl p-5 md:p-6">
+            <Image
+              src="/images/library/private-study-cubicles.webp"
+              alt="Real personal study cubicles at Adhyayan Library Gwalior"
+              width={1086}
+              height={1448}
+              sizes="(min-width: 1024px) 380px, 100vw"
+              className="mb-5 aspect-[4/3] w-full rounded-xl object-cover"
+            />
             <h2 className="font-serif font-bold text-2xl mb-4">
               {business.name}
             </h2>
@@ -230,6 +240,8 @@ export default async function SeoLandingPage({ params }: PageProps) {
           </aside>
         </div>
       </section>
+
+      {page.slug === "best-library-in-gwalior" && <BestLibraryGuide />}
 
       <section className="px-4 md:px-6 pb-12 md:pb-16">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-4">

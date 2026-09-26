@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { business, seoPages } from "@/lib/site";
 
@@ -18,15 +15,6 @@ const LogoIcon = () => (
   </div>
 );
 
-const linkVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: { delay: i * 0.1, duration: 0.3 }
-  })
-};
-
 export default function Footer() {
   return (
     <footer className="bg-[#2C241D] text-cream/80 pt-10 pb-[25px] md:pt-20 md:pb-10 overflow-hidden">
@@ -34,12 +22,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-16">
           
           {/* Brand */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-4 md:space-y-6"
-          >
+          <div className="space-y-4 md:space-y-6">
             <h3 className="flex items-center font-serif text-[21px] md:text-3xl font-bold text-cream tracking-tight">
               <LogoIcon />
               <span>
@@ -53,96 +36,59 @@ export default function Footer() {
               <p>{business.streetAddress}, {business.locality}</p>
               <p>{business.displayPhone} | {business.alternateDisplayPhone}</p>
             </div>
-          </motion.div>
+          </div>
 
 
           {/* Links Wrapper for Mobile Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 md:col-span-2 w-full">
             {/* Quick Links */}
             <div>
-              <motion.h4
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="text-[13px] md:text-lg text-cream font-bold mb-4 md:mb-6"
-              >
+              <h4 className="text-[13px] md:text-lg text-cream font-bold mb-4 md:mb-6">
                 Quick Links
-              </motion.h4>
+              </h4>
               <ul className="space-y-[10px] md:space-y-4">
-                {["Home", "About Us", "Gallery"].map((link, i) => (
-                  <motion.li
-                    key={link}
-                    custom={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={linkVariants}
-                  >
-                    <a href={`#${link.toLowerCase().replace(" ", "")}`} className="text-[11px] md:text-base transition-colors flex items-center gap-1 group">
+                {["Home", "About Us", "Gallery"].map((link) => (
+                  <li key={link}>
+                    <a href={link === "About Us" ? "#about" : `#${link.toLowerCase()}`} className="text-[11px] md:text-base transition-colors flex items-center gap-1 group">
                       {link}
                     </a>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <motion.h4
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="text-[13px] md:text-lg text-cream font-bold mb-4 md:mb-6"
-              >
+              <h4 className="text-[13px] md:text-lg text-cream font-bold mb-4 md:mb-6">
                 Gwalior Searches
-              </motion.h4>
+              </h4>
               <ul className="space-y-[10px] md:space-y-4">
-                {seoPages.map((page, i) => (
-                  <motion.li
-                    key={page.slug}
-                    custom={i + 8}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={linkVariants}
-                  >
+                {seoPages.map((page) => (
+                  <li key={page.slug}>
                     <Link href={`/${page.slug}`} className="text-[11px] md:text-base transition-colors flex items-center gap-1 group">
                       {page.title}
                     </Link>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </div>
 
             {/* Membership & Contact */}
             <div>
-              <motion.h4
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="text-[13px] md:text-lg text-cream font-bold mb-4 md:mb-6"
-              >
+              <h4 className="text-[13px] md:text-lg text-cream font-bold mb-4 md:mb-6">
                 Contact
-              </motion.h4>
+              </h4>
               <ul className="space-y-[10px] md:space-y-4 mb-0 md:mb-8">
                 {[
                   { href: "/contact", label: "Official Contact" },
                   { href: "/membership", label: "Membership Plans" },
                   { href: "/join", label: "Reserve a Seat" },
-                  { href: "/local-seo-actions", label: "Local SEO Actions" },
                   { href: "/sitemap", label: "Site Map" },
-                ].map((link, i) => (
-                  <motion.li
-                    key={link.href}
-                    custom={i + 4}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={linkVariants}
-                  >
+                ].map((link) => (
+                  <li key={link.href}>
                     <Link href={link.href} className="text-[11px] md:text-base transition-colors flex items-center gap-1 group">
                       {link.label}
                     </Link>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -150,19 +96,13 @@ export default function Footer() {
 
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="border-t border-white/10 pt-5 md:pt-8 flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0 text-[10px] md:text-sm"
-        >
+        <div className="border-t border-white/10 pt-5 md:pt-8 flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0 text-[10px] md:text-sm">
           <p>© 2026 Adhyayan Library. All Rights Reserved.</p>
           <div className="flex space-x-4 md:space-x-6">
             <Link href="/contact" className="transition-colors">Contact</Link>
             <Link href="/sitemap" className="transition-colors">Sitemap</Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

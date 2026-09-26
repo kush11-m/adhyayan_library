@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { Armchair, Moon, Clock, Wind } from "lucide-react";
+import { trackConversion } from "@/lib/analytics";
+import { business, directionsUrl, whatsappUrl } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -17,12 +18,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6 md:gap-12 items-center relative z-10 w-full h-full pb-10 md:pb-16">
         
         {/* Left Content */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col space-y-4 md:space-y-8 mt-0"
-        >
+        <div className="flex flex-col space-y-4 md:space-y-8 mt-0">
           {/* Gwalior Badge */}
           <div className="inline-flex items-center self-start space-x-1.5 bg-cream/80 px-3 py-1 rounded-full shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-terracotta animate-pulse"></span>
@@ -52,27 +48,44 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2.5 pt-1 md:pt-4 mb-2 md:mb-0 w-full sm:flex-row">
-            <a 
-              href="#pricing" 
-              className="w-full text-center bg-burnt-orange text-cream px-6 py-3.5 rounded-xl font-bold text-[13.5px] shadow-[0_4px_14px_rgba(217,119,69,0.35)] md:w-auto md:bg-text-primary md:text-cream md:px-8 md:py-4 md:rounded-full md:text-base md:shadow-lg"
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 md:pt-4 w-full max-w-2xl">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackConversion("whatsapp_intent", { placement: "hero" })}
+              className="min-h-12 w-full flex items-center justify-center text-center bg-burnt-orange text-cream px-5 py-3 rounded-xl font-bold text-[13px] leading-tight shadow-[0_4px_14px_rgba(217,119,69,0.35)] md:bg-text-primary md:text-cream md:px-6 md:py-3.5 md:rounded-full md:text-[15px] md:shadow-lg"
             >
-              Reserve a Cabin Desk
+              Check Seat Availability
             </a>
-            <a 
-              href="#about" 
-              className="w-full text-center bg-cream/50 text-text-primary px-6 py-3.5 rounded-xl font-bold text-[13.5px] backdrop-blur-sm md:w-auto md:bg-cream/30 md:border md:border-transparent md:glass md:px-8 md:py-4 md:rounded-full md:text-base"
+            <a
+              href={`tel:${business.phone}`}
+              onClick={() => trackConversion("phone_click", { placement: "hero" })}
+              className="min-h-12 w-full flex items-center justify-center text-center bg-cream/70 text-text-primary px-5 py-3 rounded-xl font-bold text-[13px] leading-tight backdrop-blur-sm border border-text-primary/5 md:bg-cream/30 md:px-6 md:py-3.5 md:rounded-full md:text-[15px]"
             >
-              Take a Virtual Tour
+              Call {business.displayPhone}
             </a>
           </div>
-        </motion.div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px] md:text-xs font-bold text-terracotta max-w-2xl">
+            <a href="#gallery" className="rounded-full bg-cream/70 border border-terracotta/15 px-3 py-2.5 text-center transition-colors hover:bg-cream">See the real space</a>
+            <a
+              href={directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackConversion("directions_click", { placement: "hero" })}
+              className="rounded-full bg-cream/70 border border-terracotta/15 px-3 py-2.5 text-center transition-colors hover:bg-cream"
+            >
+              Get directions
+            </a>
+            <a href="#pricing" className="col-span-2 sm:col-span-1 rounded-full bg-cream/70 border border-terracotta/15 px-3 py-2.5 text-center transition-colors hover:bg-cream">View plans</a>
+          </div>
+        </div>
 
         {/* Right Image & Floating Cards */}
         <div className="relative h-[200px] md:h-[600px] w-full rounded-2xl md:rounded-[40px] overflow-hidden shadow-sm md:shadow-2xl mt-4 mb-4 md:my-0 border-none md:border md:border-secondary-background/40">
           <Image
-            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-            alt="Students studying in a silent AC self study library in Gwalior"
+            src="/images/library/hero-study-hall.webp"
+            alt="Long aisle of personal wooden cabin desks inside Adhyayan Library in Padav, Gwalior"
             fill
             priority
             sizes="(min-width: 768px) 50vw, 100vw"
@@ -127,7 +140,7 @@ export default function Hero() {
             </div>
             <div className="text-center px-1">
               <div className="font-serif font-bold text-[17px] text-terracotta">Night Shift</div>
-              <div className="text-[9px] font-bold text-text-secondary uppercase tracking-[0.05em] mt-0.5">24/7 Option</div>
+              <div className="text-[9px] font-bold text-text-secondary uppercase tracking-[0.05em] mt-0.5">Ask Availability</div>
             </div>
             <div className="text-center px-1">
               <div className="font-serif font-bold text-[17px] text-terracotta">AC Hall</div>

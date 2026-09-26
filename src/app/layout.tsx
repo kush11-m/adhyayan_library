@@ -1,18 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
-import ScrollManager from "@/components/ScrollManager";
-import { business, localKeywords, siteUrl } from "@/lib/site";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import MobileActionBar from "@/components/MobileActionBar";
+import SmoothScroll from "@/components/SmoothScroll";
+import { business, siteUrl } from "@/lib/site";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -22,7 +13,6 @@ export const metadata: Metadata = {
     template: "%s | Adhyayan Library Gwalior",
   },
   description: business.description,
-  keywords: localKeywords,
   authors: [{ name: business.name }],
   creator: business.name,
   publisher: business.name,
@@ -48,7 +38,7 @@ export const metadata: Metadata = {
     description: business.description,
     images: [
       {
-        url: business.image,
+        url: business.shareImage,
         width: 1200,
         height: 630,
         alt: "Students studying in a quiet modern library at Adhyayan Library Gwalior",
@@ -59,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Adhyayan Library Gwalior | Self Study Centre",
     description: business.description,
-    images: [business.image],
+    images: [business.shareImage],
   },
   robots: {
     index: true,
@@ -92,11 +82,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${manrope.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
-      <body className="min-h-full flex flex-col">
-        <ScrollManager />
+      <body className="min-h-full flex flex-col pb-16 md:pb-0">
+        <SmoothScroll />
+        <GoogleAnalytics />
         {children}
+        <MobileActionBar />
       </body>
     </html>
   );

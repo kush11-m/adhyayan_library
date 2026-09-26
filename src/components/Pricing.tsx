@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import clsx from "clsx";
 import Link from "next/link";
@@ -11,33 +8,18 @@ export default function Pricing() {
     <section id="pricing" className="py-10 md:py-20 bg-background md:bg-cream">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-left md:text-center max-w-2xl mx-auto mb-6 md:mb-12">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[19px] md:text-5xl font-serif font-bold text-text-primary mb-1 md:mb-4 tracking-[-0.01em] md:tracking-normal"
-          >
+          <h2 className="text-[19px] md:text-5xl font-serif font-bold text-text-primary mb-1 md:mb-4 tracking-[-0.01em] md:tracking-normal">
             Choose Your Membership
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-[12.5px] md:text-lg text-text-secondary"
-          >
-            Flexible plans designed for every student.
-          </motion.p>
+          </h2>
+          <p className="text-[12.5px] md:text-lg text-text-secondary">
+            Monthly options for a six-hour schedule or full-day study access.
+          </p>
         </div>
 
         <div className="flex flex-col md:grid md:grid-cols-3 gap-3 md:gap-8 items-center max-w-6xl mx-auto">
-          {membershipPlans.map((plan, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+          {membershipPlans.map((plan) => (
+            <article
+              key={plan.slug}
               className={clsx(
                 "bg-cream md:glass p-[16px_14px] md:p-8 rounded-[10px] md:rounded-[32px] transition-all duration-300 relative w-full shadow-sm border-0",
                 plan.slug === "standard" ? "md:border-terracotta md:border-2 shadow-[0_8px_30px_rgba(201,107,75,0.08)] md:shadow-xl md:scale-105 z-10" : "md:border-transparent"
@@ -59,17 +41,13 @@ export default function Pricing() {
 
               <ul className="space-y-[5px] md:space-y-4 mb-[12px] md:mb-8">
                 {plan.features.map((feature, fIndex) => (
-                  <motion.li 
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 + fIndex * 0.1 }}
-                    key={fIndex} 
+                  <li
+                    key={fIndex}
                     className="flex items-start text-text-secondary text-[12px] md:text-base"
                   >
                     <Check className="text-terracotta mr-1.5 md:mr-3 flex-shrink-0 mt-[2px] md:mt-0 w-[14px] h-[14px] md:w-[18px] md:h-[18px]" />
                     <span>{feature}</span>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 
@@ -83,10 +61,10 @@ export default function Pricing() {
                       : "bg-text-primary text-white"
                   )}
                 >
-                  Choose {plan.slug === "standard" ? "Standard Pass" : plan.name}
+                  Enquire for this plan
                 </Link>
               </div>
-            </motion.div>
+            </article>
           ))}
         </div>
       </div>
