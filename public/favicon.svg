@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#2C241D"/>
-  <path d="M16 16h13c5 0 9 4 9 9v23c-2.3-2.4-5.4-3.6-9-3.6H16V16Z" fill="#FFF8EE"/>
-  <path d="M48 16H35c-5 0-9 4-9 9v23c2.3-2.4 5.4-3.6 9-3.6h13V16Z" fill="#F5EFE6"/>
-  <path d="M22 26h9M22 33h9M34 26h8M34 33h8" stroke="#C96B4B" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="32" cy="15" r="7" fill="#C96B4B"/>
-  <text x="32" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#FFF8EE">AL</text>
+  <path d="M10 15h14.5c4.8 0 7.5 2.8 7.5 7v29c-2.5-3.2-5.8-4.8-10-4.8H10V15Z" fill="#FFF8EE"/>
+  <path d="M54 15H39.5c-4.8 0-7.5 2.8-7.5 7v29c2.5-3.2 5.8-4.8 10-4.8h12V15Z" fill="#F5EFE6"/>
+  <path d="M32 21v30" stroke="#B5522D" stroke-width="3" stroke-linecap="round"/>
+  <path d="M16 25h10M16 32h10M38 25h10M38 32h10" stroke="#9F4F35" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M25.5 11.5 32 5l6.5 6.5L32 18l-6.5-6.5Z" fill="#B38B59"/>
 </svg>
